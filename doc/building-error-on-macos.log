@@ -1,4 +1,17 @@
 
+Issues:
+1. 'swap(char&, char&)' is ambiguous
+
+2. insert an explicit cast to silence this issue
+
+3. non-const references to bitfields prohibited
+	https://stackoverflow.com/questions/17607967/why-are-non-const-references-to-bitfields-prohibited
+
+
+
+
+-------------------------------------------------------
+
 
 JavaScriptCore/bytecompiler/BytecodeGenerator.cpp:1874:26: error: non-constant-expression cannot be narrowed from type 'int' to 'uint32_t' (aka 'unsigned int') in initializer list [-Wc++11-narrowing]
     HandlerInfo info = { start->bind(0, 0), end->bind(0, 0), instructions().size(), m_dynamicScopeDepth + m_baseScopeDepth, CodeLocationLabel() };
@@ -119,43 +132,6 @@ Last login: Thu Apr 11 09:55:04 on ttys007
 ouchous-MacBook-Pro:~ wangchao$ 
 ouchous-MacBook-Pro:~ wangchao$ 
 ouchous-MacBook-Pro:~ wangchao$ tmux a -t 0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
