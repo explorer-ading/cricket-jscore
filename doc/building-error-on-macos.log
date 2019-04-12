@@ -1,0 +1,496 @@
+
+
+JavaScriptCore/bytecompiler/BytecodeGenerator.cpp:1874:26: error: non-constant-expression cannot be narrowed from type 'int' to 'uint32_t' (aka 'unsigned int') in initializer list [-Wc++11-narrowing]
+    HandlerInfo info = { start->bind(0, 0), end->bind(0, 0), instructions().size(), m_dynamicScopeDepth + m_baseScopeDepth, CodeLocationLabel() };
+                         ^~~~~~~~~~~~~~~~~
+JavaScriptCore/bytecompiler/BytecodeGenerator.cpp:1874:26: note: insert an explicit cast to silence this issue
+    HandlerInfo info = { start->bind(0, 0), end->bind(0, 0), instructions().size(), m_dynamicScopeDepth + m_baseScopeDepth, CodeLocationLabel() };
+                         ^~~~~~~~~~~~~~~~~
+                         static_cast<uint32_t>( )
+JavaScriptCore/bytecompiler/BytecodeGenerator.cpp:1874:45: error: non-constant-expression cannot be narrowed from type 'int' to 'uint32_t' (aka 'unsigned int') in initializer list [-Wc++11-narrowing]
+    HandlerInfo info = { start->bind(0, 0), end->bind(0, 0), instructions().size(), m_dynamicScopeDepth + m_baseScopeDepth, CodeLocationLabel() };
+                                            ^~~~~~~~~~~~~~~
+JavaScriptCore/bytecompiler/BytecodeGenerator.cpp:1874:45: note: insert an explicit cast to silence this issue
+    HandlerInfo info = { start->bind(0, 0), end->bind(0, 0), instructions().size(), m_dynamicScopeDepth + m_baseScopeDepth, CodeLocationLabel() };
+                                            ^~~~~~~~~~~~~~~
+                                            static_cast<uint32_t>( )
+JavaScriptCore/bytecompiler/BytecodeGenerator.cpp:1874:62: error: non-constant-expression cannot be narrowed from type 'size_t' (aka 'unsigned long') to 'uint32_t' (aka 'unsigned int') in initializer list
+      [-Wc++11-narrowing]
+    HandlerInfo info = { start->bind(0, 0), end->bind(0, 0), instructions().size(), m_dynamicScopeDepth + m_baseScopeDepth, CodeLocationLabel() };
+                                                             ^~~~~~~~~~~~~~~~~~~~~
+JavaScriptCore/bytecompiler/BytecodeGenerator.cpp:1874:62: note: insert an explicit cast to silence this issue
+    HandlerInfo info = { start->bind(0, 0), end->bind(0, 0), instructions().size(), m_dynamicScopeDepth + m_baseScopeDepth, CodeLocationLabel() };
+                                                             ^~~~~~~~~~~~~~~~~~~~~
+                                                             static_cast<uint32_t>( )
+JavaScriptCore/bytecompiler/BytecodeGenerator.cpp:1874:85: error: non-constant-expression cannot be narrowed from type 'int' to 'uint32_t' (aka 'unsigned int') in initializer list [-Wc++11-narrowing]
+    HandlerInfo info = { start->bind(0, 0), end->bind(0, 0), instructions().size(), m_dynamicScopeDepth + m_baseScopeDepth, CodeLocationLabel() };
+                                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+JavaScriptCore/bytecompiler/BytecodeGenerator.cpp:1874:85: note: insert an explicit cast to silence this issue
+    HandlerInfo info = { start->bind(0, 0), end->bind(0, 0), instructions().size(), m_dynamicScopeDepth + m_baseScopeDepth, CodeLocationLabel() };
+                                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                                                    static_cast<uint32_t>(                )
+JavaScriptCore/bytecompiler/BytecodeGenerator.cpp:1926:25: error: non-constant-expression cannot be narrowed from type 'size_t' (aka 'unsigned long') to 'uint32_t' (aka 'unsigned int') in initializer list
+      [-Wc++11-narrowing]
+    SwitchInfo info = { instructions().size(), type };
+
+
+
+
+
+JavaScriptCore/runtime/JSONObject.cpp:324:44: error: non-constant-expression cannot be narrowed from type 'char' to 'UChar' (aka 'unsigned short') in initializer list [-Wc++11-narrowing]                        
+                UChar hex[] = { '\\', 'u', hexDigits[(ch >> 12) & 0xF], hexDigits[(ch >> 8) & 0xF], hexDigits[(ch >> 4) & 0xF], hexDigits[ch & 0xF] };                                                            
+                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~                                   
+JavaScriptCore/runtime/JSONObject.cpp:324:44: note: insert an explicit cast to silence this issue        
+                UChar hex[] = { '\\', 'u', hexDigits[(ch >> 12) & 0xF], hexDigits[(ch >> 8) & 0xF], hexDigits[(ch >> 4) & 0xF], hexDigits[ch & 0xF] };                                                            
+                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~                                   
+                                           static_cast<UChar>(        )                                  
+JavaScriptCore/runtime/JSONObject.cpp:324:73: error: non-constant-expression cannot be narrowed from type 'char' to 'UChar' (aka 'unsigned short') in initializer list [-Wc++11-narrowing]                        
+                UChar hex[] = { '\\', 'u', hexDigits[(ch >> 12) & 0xF], hexDigits[(ch >> 8) & 0xF], hexDigits[(ch >> 4) & 0xF], hexDigits[ch & 0xF] };                                                            
+                                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~       
+JavaScriptCore/runtime/JSONObject.cpp:324:73: note: insert an explicit cast to silence this issue        
+                UChar hex[] = { '\\', 'u', hexDigits[(ch >> 12) & 0xF], hexDigits[(ch >> 8) & 0xF], hexDigits[(ch >> 4) & 0xF], hexDigits[ch & 0xF] };                                                            
+                                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~       
+                                                                        static_cast<UChar>(       )      
+JavaScriptCore/runtime/JSONObject.cpp:324:101: error: non-constant-expression cannot be narrowed from type 'char' to 'UChar' (aka 'unsigned short') in initializer list [-Wc++11-narrowing]                       
+                UChar hex[] = { '\\', 'u', hexDigits[(ch >> 12) & 0xF], hexDigits[(ch >> 8) & 0xF], hexDigits[(ch >> 4) & 0xF], hexDigits[ch & 0xF] };                                                            
+                                                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~                                                                                    
+JavaScriptCore/runtime/JSONObject.cpp:324:101: note: insert an explicit cast to silence this issue       
+                UChar hex[] = { '\\', 'u', hexDigits[(ch >> 12) & 0xF], hexDigits[(ch >> 8) & 0xF], hexDigits[(ch >> 4) & 0xF], hexDigits[ch & 0xF] };                                                            
+                                                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~                                                                                    
+                                                                                                    static_cast<UChar>(       )                                                                                   
+JavaScriptCore/runtime/JSONObject.cpp:324:129: error: non-constant-expression cannot be narrowed from type 'char' to 'UChar' (aka 'unsigned short') in initializer list [-Wc++11-narrowing]                       
+                UChar hex[] = { '\\', 'u', hexDigits[(ch >> 12) & 0xF], hexDigits[(ch >> 8) & 0xF], hexDigits[(ch >> 4) & 0xF], hexDigits[ch & 0xF] };                                                            
+                                                                                                                                ^~~~~~~~~~~~~~~~~~~                                                               
+JavaScriptCore/runtime/JSONObject.cpp:324:129: note: insert an explicit cast to silence this issue       
+                UChar hex[] = { '\\', 'u', hexDigits[(ch >> 12) & 0xF], hexDigits[(ch >> 8) & 0xF], hexDigits[(ch >> 4) & 0xF], hexDigits[ch & 0xF] };                                                            
+                                                                                                                                ^~~~~~~~~~~~~~~~~~~                                                               
+                                                                                                                                static_cast<UChar>()  
+
+
+
+
+JavaScriptCore/runtime/StringPrototype.cpp:445:24: error: non-constant-expression cannot be narrowed from type 'unsigned int' to 'int' in initializer list [-Wc++11-narrowing]
+    int ovector[2] = { matchPos, matchEnd };
+                       ^~~~~~~~
+JavaScriptCore/runtime/StringPrototype.cpp:445:24: note: insert an explicit cast to silence this issue
+    int ovector[2] = { matchPos, matchEnd };
+                       ^~~~~~~~
+                       static_cast<int>( )
+JavaScriptCore/runtime/StringPrototype.cpp:445:34: error: non-constant-expression cannot be narrowed from type 'size_t' (aka 'unsigned long') to 'int' in initializer list [-Wc++11-narrowing]
+    int ovector[2] = { matchPos, matchEnd };
+                                 ^~~~~~~~
+JavaScriptCore/runtime/StringPrototype.cpp:445:34: note: insert an explicit cast to silence this issue
+    int ovector[2] = { matchPos, matchEnd };
+                                 ^~~~~~~~
+                                 static_cast<int>( )
+
+
+
+
+
+
+JavaScriptCore/runtime/Structure.cpp:166:91: error: non-const reference cannot bind to bit-field 'm_attributesInPrevious'
+            transitionTableAdd(std::make_pair(existingTransition->m_nameInPrevious.get(), existingTransition->m_attributesInPrevious), existingTransition, existingTransition->m_specificValueInPrevious);
+                                                                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./JavaScriptCore/runtime/Structure.h:241:18: note: bit-field is declared here
+        unsigned m_attributesInPrevious : 7;
+                 ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/utility:661:29: note: passing argument to parameter '__t2' here
+make_pair(_T1&& __t1, _T2&& __t2)
+                            ^
+JavaScriptCore/runtime/Structure.cpp:265:77: error: non-const reference cannot bind to bit-field 'm_attributesInPrevious'
+        m_previous->transitionTableRemove(make_pair(m_nameInPrevious.get(), m_attributesInPrevious), m_specificValueInPrevious);
+                                                                            ^~~~~~~~~~~~~~~~~~~~~~
+./JavaScriptCore/runtime/Structure.h:241:18: note: bit-field is declared here
+        unsigned m_attributesInPrevious : 7;
+                 ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/utility:661:29: note: passing argument to parameter '__t2' here
+make_pair(_T1&& __t1, _T2&& __t2)
+                            ^
+
+
+
+
+JavaScriptCore/yarr/RegexCompiler.cpp:629:12: error: cannot initialize return object of type 'const char *' with an rvalue of type 'bool'
+    return false;
+           ^~~~~
+
+Last login: Thu Apr 11 09:55:04 on ttys007
+ouchous-MacBook-Pro:~ wangchao$ 
+ouchous-MacBook-Pro:~ wangchao$ 
+ouchous-MacBook-Pro:~ wangchao$ tmux a -t 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/libkern/OSAtomicDeprecated.h:201:9: n[60/4736]
+      'OSAtomicDecrement32Barrier' has been explicitly marked deprecated here                                                                                 
+int32_t OSAtomicDecrement32Barrier( volatile int32_t *__theValue );                                                                                           
+        ^                                                                                                                                                     
+In file included from JavaScriptCore/parser/Grammar.y:28:                                                                                                     
+In file included from ./JavaScriptCore/runtime/JSObject.h:27:                                                                                                 
+In file included from ./JavaScriptCore/runtime/ClassInfo.h:26:                                                                                                
+In file included from ./JavaScriptCore/interpreter/CallFrame.h:26:                                                                                            
+In file included from ./JavaScriptCore/runtime/JSGlobalData.h:39:                                                                                             
+In file included from ./JavaScriptCore/runtime/NumericStrings.h:29:                                                                                           
+In file included from ./JavaScriptCore/runtime/UString.h:27:                                                                                                  
+In file included from ./JavaScriptCore/runtime/UStringImpl.h:27:                                                                                              
+out/BAL/wtf/text/StringImpl.h:174:20: warning: result of comparison of constant 9223372036854775791 with expression of type 'unsigned int' is always false    
+      [-Wtautological-constant-out-of-range-compare]                                                                                                          
+        if (length > ((std::numeric_limits<size_t>::max() - sizeof(StringImpl)) / sizeof(UChar))) {                                                           
+            ~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                              
+In file included from JavaScriptCore/parser/Grammar.y:28:                                                                                                     
+In file included from ./JavaScriptCore/runtime/JSObject.h:26:                                                                                                 
+In file included from ./JavaScriptCore/runtime/ArgList.h:26:                                                                                                  
+In file included from out/BAL/wtf/HashSet.h:25:                                                                                                               
+out/BAL/wtf/HashTable.h:274:85: error: call to 'swap' is ambiguous                                                                                            
+    template<typename T> struct Mover<T, true> { static void move(T& from, T& to) { swap(from, to); } };                                                      
+                                                                                    ^~~~                                                                      
+out/BAL/wtf/HashTable.h:765:53: note: in instantiation of member function 'WTF::Mover<std::__1::pair<WTF::RefPtr<WebCore::StringImpl>, JSC::SymbolTableEntry>$
+      true>::move' requested here                                                                                                                             
+        Mover<ValueType, Traits::needsDestruction>::move(entry, *lookupForWriting(Extractor::extract(entry)).first);                                          
+                                                    ^                                                                                                         
+out/BAL/wtf/HashTable.h:920:17: note: in instantiation of member function 'WTF::HashTable<WTF::RefPtr<WebCore::StringImpl>,                                   
+      std::__1::pair<WTF::RefPtr<WebCore::StringImpl>, JSC::SymbolTableEntry>, WTF::PairFirstExtractor<std::__1::pair<WTF::RefPtr<WebCore::StringImpl>,       
+      JSC::SymbolTableEntry> >, JSC::IdentifierRepHash, WTF::PairHashTraits<WTF::HashTraits<WTF::RefPtr<WebCore::StringImpl> >,                               
+      JSC::SymbolTableIndexHashTraits>, WTF::HashTraits<WTF::RefPtr<WebCore::StringImpl> > >::reinsert' requested here                                        
+                reinsert(oldTable[i]);                                                                                                                        
+                ^                                                                                                                                             
+out/BAL/wtf/HashTable.h:898:9: note: in instantiation of member function 'WTF::HashTable<WTF::RefPtr<WebCore::StringImpl>,                                    
+      std::__1::pair<WTF::RefPtr<WebCore::StringImpl>, JSC::SymbolTableEntry>, WTF::PairFirstExtractor<std::__1::pair<WTF::RefPtr<WebCore::StringImpl>,       
+      JSC::SymbolTableEntry> >, JSC::IdentifierRepHash, WTF::PairHashTraits<WTF::HashTraits<WTF::RefPtr<WebCore::StringImpl> >,                               
+      JSC::SymbolTableIndexHashTraits>, WTF::HashTraits<WTF::RefPtr<WebCore::StringImpl> > >::rehash' requested here                                          
+        rehash(newSize);                                                                                                                                      
+        ^                                                                                                                                                     
+out/BAL/wtf/HashTable.h:634:13: note: in instantiation of member function 'WTF::HashTable<WTF::RefPtr<WebCore::StringImpl>,                                   
+[0]  1$ bash   2$ bash   3$ bash   4$ bash   5$ [tmux]                                                                                                  22:01 
+  [Restored Apr 12, 2019 at 22:02:10]
+Last login: Thu Apr 11 15:40:28 on ttys006
+Restored session: Fri Apr 12 22:01:45 CST 2019
+ouchous-MacBook-Pro:~ wangchao$ 
+ouchous-MacBook-Pro:~ wangchao$ 
+ouchous-MacBook-Pro:~ wangchao$ 
+ouchous-MacBook-Pro:~ wangchao$ tmux ls
+0: 5 windows (created Thu Mar 28 09:57:54 2019) [212x49]
+ouchous-MacBook-Pro:~ wangchao$ 
+ouchous-MacBook-Pro:~ wangchao$ tmux a -t 0
+
+clang: warning: ./JavaScriptCore/runtime/NativeErrorConstructor.o: 'linker' input unused [-Wunused-command-line-argument]                                                                                 [6/4848]
+clang: warning: ./JavaScriptCore/runtime/NativeErrorPrototype.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/NumberConstructor.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/NumberObject.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/NumberPrototype.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/ObjectConstructor.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/ObjectPrototype.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/Operations.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/PropertyDescriptor.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/PropertyNameArray.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/PropertySlot.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/PrototypeFunction.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/RegExp.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/RegExpConstructor.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/RegExpObject.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/RegExpPrototype.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/RopeImpl.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/ScopeChain.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/SmallStrings.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/StringConstructor.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/StringObject.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/StringPrototype.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/Structure.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/StructureChain.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/UString.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/runtime/TimeoutChecker.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/yarr/RegexCompiler.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/yarr/RegexInterpreter.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/yarr/RegexJIT.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: ./JavaScriptCore/jsc.o: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -Wl,-no-whole-archive: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -licudata: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -licui18n: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -licuio: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -licule: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -liculx: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -licutu: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -licuuc: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -lpthread: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-std=c++11' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-g' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-O0' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-rdynamic' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-L../lib' [-Wunused-command-line-argument]
+
+
+
+Last login: Thu Apr 11 09:55:04 on ttys007
+ouchous-MacBook-Pro:~ wangchao$ 
+ouchous-MacBook-Pro:~ wangchao$ 
+ouchous-MacBook-Pro:~ wangchao$ tmux a -t 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/libkern/OSAtomicDeprecated.h:201:9: n[60/4736]
+      'OSAtomicDecrement32Barrier' has been explicitly marked deprecated here                                                                                 
+int32_t OSAtomicDecrement32Barrier( volatile int32_t *__theValue );                                                                                           
+        ^                                                                                                                                                     
+In file included from JavaScriptCore/parser/Grammar.y:28:                                                                                                     
+In file included from ./JavaScriptCore/runtime/JSObject.h:27:                                                                                                 
+In file included from ./JavaScriptCore/runtime/ClassInfo.h:26:                                                                                                
+In file included from ./JavaScriptCore/interpreter/CallFrame.h:26:                                                                                            
+In file included from ./JavaScriptCore/runtime/JSGlobalData.h:39:                                                                                             
+In file included from ./JavaScriptCore/runtime/NumericStrings.h:29:                                                                                           
+In file included from ./JavaScriptCore/runtime/UString.h:27:                                                                                                  
+In file included from ./JavaScriptCore/runtime/UStringImpl.h:27:                                                                                              
+out/BAL/wtf/text/StringImpl.h:174:20: warning: result of comparison of constant 9223372036854775791 with expression of type 'unsigned int' is always false    
+      [-Wtautological-constant-out-of-range-compare]                                                                                                          
+        if (length > ((std::numeric_limits<size_t>::max() - sizeof(StringImpl)) / sizeof(UChar))) {                                                           
+            ~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                              
+In file included from JavaScriptCore/parser/Grammar.y:28:                                                                                                     
+In file included from ./JavaScriptCore/runtime/JSObject.h:26:                                                                                                 
+In file included from ./JavaScriptCore/runtime/ArgList.h:26:                                                                                                  
+In file included from out/BAL/wtf/HashSet.h:25:                                                                                                               
+out/BAL/wtf/HashTable.h:274:85: error: call to 'swap' is ambiguous                                                                                            
+    template<typename T> struct Mover<T, true> { static void move(T& from, T& to) { swap(from, to); } };                                                      
+                                                                                    ^~~~                                                                      
+out/BAL/wtf/HashTable.h:765:53: note: in instantiation of member function 'WTF::Mover<std::__1::pair<WTF::RefPtr<WebCore::StringImpl>, JSC::SymbolTableEntry>$
+      true>::move' requested here                                                                                                                             
+        Mover<ValueType, Traits::needsDestruction>::move(entry, *lookupForWriting(Extractor::extract(entry)).first);                                          
+                                                    ^                                                                                                         
+out/BAL/wtf/HashTable.h:920:17: note: in instantiation of member function 'WTF::HashTable<WTF::RefPtr<WebCore::StringImpl>,                                   
+      std::__1::pair<WTF::RefPtr<WebCore::StringImpl>, JSC::SymbolTableEntry>, WTF::PairFirstExtractor<std::__1::pair<WTF::RefPtr<WebCore::StringImpl>,       
+      JSC::SymbolTableEntry> >, JSC::IdentifierRepHash, WTF::PairHashTraits<WTF::HashTraits<WTF::RefPtr<WebCore::StringImpl> >,                               
+      JSC::SymbolTableIndexHashTraits>, WTF::HashTraits<WTF::RefPtr<WebCore::StringImpl> > >::reinsert' requested here                                        
+                reinsert(oldTable[i]);                                                                                                                        
+                ^                                                                                                                                             
+out/BAL/wtf/HashTable.h:898:9: note: in instantiation of member function 'WTF::HashTable<WTF::RefPtr<WebCore::StringImpl>,                                    
+      std::__1::pair<WTF::RefPtr<WebCore::StringImpl>, JSC::SymbolTableEntry>, WTF::PairFirstExtractor<std::__1::pair<WTF::RefPtr<WebCore::StringImpl>,       
+      JSC::SymbolTableEntry> >, JSC::IdentifierRepHash, WTF::PairHashTraits<WTF::HashTraits<WTF::RefPtr<WebCore::StringImpl> >,                               
+      JSC::SymbolTableIndexHashTraits>, WTF::HashTraits<WTF::RefPtr<WebCore::StringImpl> > >::rehash' requested here                                          
+        rehash(newSize);                                                                                                                                      
+        ^                                                                                                                                                     
+out/BAL/wtf/HashTable.h:634:13: note: in instantiation of member function 'WTF::HashTable<WTF::RefPtr<WebCore::StringImpl>,                                   
+[0]  1$ bash   2$ bash   3$ bash   4$ bash   5$ [tmux]                                                                                                  22:01 
+  [Restored Apr 12, 2019 at 22:02:10]
+Last login: Thu Apr 11 15:40:28 on ttys006
+Restored session: Fri Apr 12 22:01:45 CST 2019
+ouchous-MacBook-Pro:~ wangchao$ 
+ouchous-MacBook-Pro:~ wangchao$ 
+ouchous-MacBook-Pro:~ wangchao$ 
+ouchous-MacBook-Pro:~ wangchao$ tmux ls
+0: 5 windows (created Thu Mar 28 09:57:54 2019) [212x49]
+ouchous-MacBook-Pro:~ wangchao$ 
+ouchous-MacBook-Pro:~ wangchao$ tmux a -t 0
+
+
+
+
+
+Undefined symbols for architecture x86_64:                                                                                                                                                                        
+  "_CFDateFormatterCreate", referenced from:                                                                                                                                                                      
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
+  "_CFDateFormatterCreateStringWithAbsoluteTime", referenced from:                                                                                                                                                
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
+  "_CFDateFormatterSetFormat", referenced from:                                                                                                                                                                   
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
+  "_CFLocaleCopyCurrent", referenced from:                                                                                                                                                                        
+      WTF::Collator::userDefault() in BCCollatorICU.o                                                                                                                                                             
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
+  "_CFLocaleGetValue", referenced from:                                                                                                                                                                           
+      WTF::Collator::userDefault() in BCCollatorICU.o                                                                                                                                                             
+  "_CFRelease", referenced from:                                                                                                                                                                                  
+      WTF::Collator::userDefault() in BCCollatorICU.o                                                                                                                                                             
+      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                                                                                                                                     
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
+  "_CFStringCreateWithCString", referenced from:                                                                                                                                                                  
+      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                                                                                                                                     
+  "_CFStringCreateWithCharacters", referenced from:                                                                                                                                                               
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
+  "_CFStringCreateWithFormatAndArguments", referenced from:                                                                                                                                                       
+      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                                                                                                                                     
+  "_CFStringGetCString", referenced from:                                                                                                                                                                         
+      WTF::Collator::userDefault() in BCCollatorICU.o                                                                                                                                                             
+      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                                                                                                                                     
+  "_CFStringGetCharacters", referenced from:                                                                                                                                                                      
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
+  "_CFStringGetLength", referenced from:                                                                                                                                                                          
+      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                                                                                                                                     
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
+  "_CFStringGetMaximumSizeForEncoding", referenced from:                                                                                                                                                          
+      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o
+  "JSC::ExecutablePool::systemAlloc(unsigned long)", referenced from:                                                                                                                                             
+      JSC::ExecutablePool::ExecutablePool(unsigned long) in JIT.o                                                                                                                                                 
+      JSC::ExecutablePool::poolAllocate(unsigned long) in JIT.o                                                                                                                                                   
+      JSC::ExecutablePool::ExecutablePool(unsigned long) in JITOpcodes.o                                                                                                                                          
+      JSC::ExecutablePool::poolAllocate(unsigned long) in JITOpcodes.o                                                                                                                                            
+      JSC::ExecutablePool::poolAllocate(unsigned long) in JITPropertyAccess.o                                                                                                                                     
+      JSC::ExecutablePool::poolAllocate(unsigned long) in ThunkGenerators.o                                                                                                                                       
+      JSC::ExecutablePool::ExecutablePool(unsigned long) in JSGlobalData.o                                                                                                                                        
+      ...                                                                                                                                                                                                         
+  "JSC::ExecutablePool::systemRelease(JSC::ExecutablePool::Allocation const&)", referenced from:                                                                                                                  
+      JSC::ExecutablePool::~ExecutablePool() in CodeBlock.o                                                                                                                                                       
+      JSC::ExecutablePool::~ExecutablePool() in BytecodeGenerator.o                                                                                                                                               
+      JSC::ExecutablePool::~ExecutablePool() in NodesCodegen.o                                                                                                                                                    
+      JSC::ExecutablePool::~ExecutablePool() in Debugger.o                                                                                                                                                        
+      JSC::ExecutablePool::~ExecutablePool() in DebuggerCallFrame.o                                                                                                                                               
+      JSC::ExecutablePool::~ExecutablePool() in Interpreter.o                                                                                                                                                     
+      JSC::ExecutablePool::~ExecutablePool() in JIT.o                                                                                                                                                             
+      ...                                                                                                                                                                                                         
+  "JSC::ExecutableAllocator::intializePageSize()", referenced from:                                                                                                                                               
+      JSC::ExecutableAllocator::ExecutableAllocator() in JSGlobalData.o                                                                                                                                           
+  "JSC::startProfilerServerIfNeeded()", referenced from:                                                                                                                                                          
+      JSC::JSGlobalData::JSGlobalData(JSC::JSGlobalData::GlobalDataType, JSC::ThreadStackType) in JSGlobalData.o                                                                                                  
+  "WTF::isMainThread()", referenced from:                                                                                                                                                                         
+      WTF::callOnMainThreadAndWait(void (*)(void*), void*) in BCMainThreadWTF.o                                                                                                                                   
+  "WTF::initializeMainThreadToProcessMainThreadPlatform()", referenced from:                                                                                                                                      
+      WTF::initializeMainThreadToProcessMainThreadOnce() in BCMainThreadWTF.o                                                                                                                                     
+  "_add_history", referenced from:                                                                                                                                                                                
+      runInteractive(GlobalObject*) in jsc.o                                                                                                                                                                      
+  "_kCFAbsoluteTimeIntervalSince1970", referenced from:                                                                                                                                                           
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
+  "_kCFLocaleCollatorIdentifier", referenced from:                                                                                                                                                                
+      WTF::Collator::userDefault() in BCCollatorICU.o                                                                                                                                                             
+  "_readline", referenced from:                                                                                                                                                                                   
+      runInteractive(GlobalObject*) in jsc.o                                                                                                                                                                      
+  "_u_charDirection", referenced from:     
+      WebCore::StringImpl::stripWhiteSpace() in BCStringImplText.o                                                                                                                                                
+      WebCore::StringImpl::simplifyWhiteSpace() in BCStringImplText.o                                                                                                                                             
+      WebCore::StringImpl::defaultWritingDirection() in BCStringImplText.o                                                                                                                                        
+      int WebCore::toIntegralType<int>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o                                                                                                     
+      unsigned int WebCore::toIntegralType<unsigned int>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o                                                                                   
+      long long WebCore::toIntegralType<long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o                                                                                         
+      unsigned long long WebCore::toIntegralType<unsigned long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o                                                                       
+      ...   
+  "_u_charType", referenced from:
+      WTF::Unicode::isSeparatorSpace(int) in Lexer.o
+      WTF::Unicode::category(int) in Lexer.o
+      WTF::Unicode::isSeparatorSpace(int) in FunctionPrototype.o
+      WTF::Unicode::isSeparatorSpace(int) in JSGlobalObjectFunctions.o
+  "_u_foldCase", referenced from:
+      WebCore::equalIgnoringCase(unsigned short const*, char const*, unsigned int) in BCStringImplText.o
+      WebCore::StringImpl::find(char const*, int, bool) in BCStringImplText.o
+      WebCore::equalIgnoringCase(WebCore::StringImpl*, char const*) in BCStringImplText.o
+  "_u_memcasecmp", referenced from:
+      WebCore::StringImpl::find(WebCore::StringImpl*, int, bool) in BCStringImplText.o
+      WebCore::StringImpl::reverseFind(WebCore::StringImpl*, int, bool) in BCStringImplText.o
+      WebCore::equalIgnoringCase(WebCore::StringImpl*, WebCore::StringImpl*) in BCStringImplText.o
+  "_u_strFoldCase", referenced from:
+      WebCore::StringImpl::foldCase() in BCStringImplText.o
+  "_u_strToLower", referenced from:
+      WebCore::StringImpl::lower() in BCStringImplText.o
+      WTF::Unicode::toLower(unsigned short*, int, unsigned short const*, int, bool*) in StringPrototype.o
+  "_u_strToUpper", referenced from:
+      WebCore::StringImpl::upper() in BCStringImplText.o
+      WTF::Unicode::toUpper(unsigned short*, int, unsigned short const*, int, bool*) in StringPrototype.o
+  "_u_tolower", referenced from:
+      WTF::Unicode::toLower(int) in RegexCompiler.o
+      WTF::Unicode::toLower(int) in RegexInterpreter.o
+      WTF::Unicode::toLower(int) in RegexJIT.o
+  "_u_toupper", referenced from:
+      WTF::Unicode::toUpper(int) in RegexCompiler.o
+      WTF::Unicode::toUpper(int) in RegexInterpreter.o
+  "_ucol_close", referenced from:
+      WTF::Collator::releaseCollator() in BCCollatorICU.o
+  "_ucol_getAttribute", referenced from:
+      WTF::Collator::createCollator() const in BCCollatorICU.o
+  "_ucol_getLocaleByType", referenced from:
+      WTF::Collator::createCollator() const in BCCollatorICU.o
+  "_ucol_open", referenced from:
+      WTF::Collator::createCollator() const in BCCollatorICU.o
+  "_ucol_setAttribute", referenced from:
+      WTF::Collator::createCollator() const in BCCollatorICU.o
+  "_ucol_strcoll", referenced from:
+      WTF::Collator::collate(unsigned short const*, unsigned long, unsigned short const*, unsigned long) const in BCCollatorICU.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [jsc] Error 1
+
+
+
+
