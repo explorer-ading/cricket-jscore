@@ -15,7 +15,7 @@ OWBGENERATEDLINK := $(OUTDIR)
 #defines
 DEFINES := \
 		-DWTF_CHANGES \
-		-DWTF_USE_ICU_UNICODE=1 \
+		-DWTF_USE_ICU_UNICODE=0 \
 		-DWTF_USE_CURL=1 \
 		-DWTF_USE_CURL_OPENSSL=1 \
 		-DNDEBUG \
@@ -39,8 +39,8 @@ LDFLAGS := -fno-rtti -fno-exceptions
 
 TARGET := jsc
 
-JSCLDFLAGS := -rdynamic -lpthread -L$(USERLIBDIR) -Wunused-command-line-argument \
-	-Wl,-no-whole-archive -licudata -licui18n -licuio -licule -liculx -licutu -licuuc 
+#JSCLDFLAGS := -rdynamic -lpthread -L$(USERLIBDIR) -Wunused-command-line-argument -Wl,-no-whole-archive -licudata -licui18n -licuio -licule -liculx -licutu -licuuc 
+JSCLDFLAGS := -rdynamic -lpthread -L$(USERLIBDIR) -Wunused-command-line-argument -Wl,-no-whole-archive 
 
 #JSCLDFLAGS := -lpthread
 

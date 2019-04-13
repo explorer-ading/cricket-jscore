@@ -597,7 +597,7 @@
 #elif PLATFORM(GTK)
 /* The GTK+ Unicode backend is configurable */
 #else
-#define WTF_USE_ICU_UNICODE 1
+#define WTF_USE_ICU_UNICODE 0
 #endif
 
 #if PLATFORM(MAC) && !PLATFORM(IPHONE)
