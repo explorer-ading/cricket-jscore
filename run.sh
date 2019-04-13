@@ -3,7 +3,7 @@
 #sh export LIBS= 
 #sh export CFLAGS= 
 
-export LD_LIBRARY_PATH=/home/bruce/usr/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=./doc/lib:$LD_LIBRARY_PATH
 
 #./out/jsc $@
 ./jsc $@
