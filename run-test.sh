@@ -6,6 +6,5 @@ export LD_LIBRARY_PATH=./doc/lib:$LD_LIBRARY_PATH
 
 for file in ./sunspider/*
 do
-	echo "Running $file "
-	./jsc $file
+	echo "Running $file " , `./jsc $file`
 done

@@ -31,18 +31,16 @@ DEFINES := \
 		-DHAVE_PTHREAD_RWLOCK=1
 
 #flags
-#CXFLAGS := -Wall -W -Wcast-align -Wchar-subscripts -Wreturn-type -Wformat -Wformat-security -Wno-format-y2k -Wundef -Wmissing-format-attribute -Wpointer-arith -Wwrite-strings -Wno-unused-parameter -Wno-parentheses -Wno-unused-local-typedefs -Wno-narrowing -Wno-unused-const-variable -fvisibility-inlines-hidden -fPIC -fvisibility=hidden -fstrict-aliasing -O3
+CXFLAGS := -Wall -W -Wcast-align -Wchar-subscripts -Wreturn-type -Wformat -Wformat-security -Wno-format-y2k -Wundef -Wmissing-format-attribute -Wpointer-arith -Wwrite-strings -Wno-unused-parameter -Wno-parentheses -Wno-unused-local-typedefs -Wno-narrowing -Wno-unused-const-variable -fvisibility-inlines-hidden -fPIC -fvisibility=hidden -fstrict-aliasing -O3
 
-CXFLAGS := -Wall -std=c++11 -g -O0 -c -Wno-narrowing
+#CXFLAGS := -Wall -std=c++11 -g -O0 -c -Wno-narrowing
 
 LDFLAGS := -fno-rtti -fno-exceptions
 
 TARGET := jsc
 
-#JSCLDFLAGS := -rdynamic -lpthread -L$(USERLIBDIR) -Wunused-command-line-argument -Wl,-no-whole-archive -licudata -licui18n -licuio -licule -liculx -licutu -licuuc 
 JSCLDFLAGS := -rdynamic -lpthread -L$(USERLIBDIR) -Wl,-no-whole-archive -licudata -licui18n -licuio -licule -liculx -licutu -licuuc 
 
-#JSCLDFLAGS := -lpthread
 
 INCDIR :=  \
 	-I$(OWBTRUNK) \
