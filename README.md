@@ -11,3 +11,4 @@
 ## Running test
 ![cricket-jscore](./doc/cricket-jscore.png)
 
+## MIT License
