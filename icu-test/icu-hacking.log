@@ -1,0 +1,213 @@
+
+./JavaScriptCore/runtime/StringPrototype.cpp
+
+#include <wtf/unicode/Collator.h>
+#include <wtf/unicode/Unicode.h>
+
+./out/BAL/wtf/unicode/Unicode.h 
+./out/BAL/wtf/unicode/Collator.h  
+
+ls ./out/BAL/wtf/unicode/
+Collator.h Encoding.h UTF8.h     Unicode.h
+
+BAL/Internationalization/WTF//BCUTF8WTF.h
+BAL/Internationalization/WTF//BCCollatorWTF.h
+BAL/Internationalization/WTF//ICU/BCUnicodeICU.h
+BAL/Internationalization/WTF//ICU/BCEncodingICU.h
+
+
+
+tree BAL/Internationalization/WTF/
+BAL/Internationalization/WTF/
+├── BCCollatorDefaultWTF.cpp
+├── BCCollatorWTF.h
+├── BCUTF8WTF.cpp
+├── BCUTF8WTF.h
+├── ICU
+│   ├── BCCollatorICU.cpp
+│   ├── BCEncodingICU.h
+│   └── BCUnicodeICU.h
+└── Text
+    ├── BCAtomicStringImplText.h
+    ├── BCAtomicStringText.cpp
+    ├── BCAtomicStringText.h
+    ├── BCCString.cpp
+    ├── BCCString.h
+    ├── BCStringBufferText.h
+    ├── BCStringHashText.h
+    ├── BCStringImplBaseText.h
+    ├── BCStringImplText.cpp
+    ├── BCStringImplText.h
+    ├── BCStringStaticsText.cpp
+    ├── BCWTFStringText.cpp
+    ├── BCWTFStringText.h
+    └── BCWTFStringText.o
+
+
+-----------------------------------------------------------------------------------------------------
+
+Undefined symbols for architecture x86_64:                                                               
+  "_CFDateFormatterCreate", referenced from:                                                                                                                                                                      
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
+  "_CFDateFormatterCreateStringWithAbsoluteTime", referenced from:                                                                                                                                                
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
+  "_CFDateFormatterSetFormat", referenced from:                                                                                                                                                                   
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
+  "_CFLocaleCopyCurrent", referenced from:                                                               
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
+  "_CFRelease", referenced from:                                                                                                                                                                                  
+      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                            
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
+  "_CFStringCreateWithCString", referenced from:                                                                                                                                                                  
+      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                            
+  "_CFStringCreateWithCharacters", referenced from:                                                      
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
+  "_CFStringCreateWithFormatAndArguments", referenced from:                                                                                                                                                       
+      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                                                                                                                                     
+  "_CFStringGetCString", referenced from:                                                                                                                                                                         
+      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                                                                                                                                     
+  "_CFStringGetCharacters", referenced from:        
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
+  "_CFStringGetLength", referenced from:
+      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
+  "_CFStringGetMaximumSizeForEncoding", referenced from:
+      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o
+  "JSC::ExecutablePool::systemAlloc(unsigned long)", referenced from:
+      JSC::ExecutablePool::ExecutablePool(unsigned long) in JIT.o
+      JSC::ExecutablePool::poolAllocate(unsigned long) in JIT.o
+      JSC::ExecutablePool::ExecutablePool(unsigned long) in JITOpcodes.o
+      JSC::ExecutablePool::poolAllocate(unsigned long) in JITOpcodes.o
+      JSC::ExecutablePool::poolAllocate(unsigned long) in JITPropertyAccess.o
+      JSC::ExecutablePool::poolAllocate(unsigned long) in ThunkGenerators.o
+      JSC::ExecutablePool::ExecutablePool(unsigned long) in JSGlobalData.o
+      ...
+  "JSC::ExecutablePool::systemRelease(JSC::ExecutablePool::Allocation const&)", referenced from:
+      JSC::RegExp::~RegExp() in CodeBlock.o
+      JSC::RegExp::~RegExp() in BytecodeGenerator.o
+      JSC::RegExp::~RegExp() in NodesCodegen.o
+      JSC::RegExp::~RegExp() in Interpreter.o
+      JSC::JIT::privateCompile() in JIT.o
+      JSC::ExecutableAllocator::poolForSize(unsigned long) in JIT.o
+      JSC::JIT::privateCompileCTIMachineTrampolines(WTF::RefPtr<JSC::ExecutablePool>*, JSC::JSGlobalData*, JSC::TrampolineStructure*) in JITOpcodes.o
+      ...
+  "JSC::ExecutableAllocator::intializePageSize()", referenced from:
+      JSC::ExecutableAllocator::ExecutableAllocator() in JSGlobalData.o
+  "JSC::startProfilerServerIfNeeded()", referenced from:
+      JSC::JSGlobalData::JSGlobalData(JSC::JSGlobalData::GlobalDataType, JSC::ThreadStackType) in JSGlobalData.o
+  "WTF::isMainThread()", referenced from:
+      WTF::callOnMainThreadAndWait(void (*)(void*), void*) in BCMainThreadWTF.o
+  "WTF::initializeMainThreadToProcessMainThreadPlatform()", referenced from:
+      WTF::initializeMainThreadToProcessMainThreadOnce() in BCMainThreadWTF.o
+  "_add_history", referenced from:
+      jscmain(int, char**, JSC::JSGlobalData*) in jsc.o
+  "_kCFAbsoluteTimeIntervalSince1970", referenced from:
+      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
+  "_readline", referenced from:
+      jscmain(int, char**, JSC::JSGlobalData*) in jsc.o
+  "_u_charDirection", referenced from:
+      WebCore::StringImpl::stripWhiteSpace() in BCStringImplText.o
+      WebCore::StringImpl::simplifyWhiteSpace() in BCStringImplText.o
+      WebCore::StringImpl::defaultWritingDirection() in BCStringImplText.o
+      int WebCore::toIntegralType<int>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
+      unsigned int WebCore::toIntegralType<unsigned int>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
+      long long WebCore::toIntegralType<long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
+      unsigned long long WebCore::toIntegralType<unsigned long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
+      ...
+  "_u_charType", referenced from:
+      JSC::Lexer::lex(void*, void*) in Lexer.o
+      JSC::isNonASCIIIdentStart(int) in Lexer.o
+      JSC::isNonASCIIIdentPart(int) in Lexer.o
+      JSC::functionProtoFuncToString(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in FunctionPrototype.o
+      JSC::isStrWhiteSpace(unsigned short) in JSGlobalObjectFunctions.o
+      JSC::parseInt(JSC::UString const&, int) in JSGlobalObjectFunctions.o
+      JSC::globalFuncParseFloat(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in JSGlobalObjectFunctions.o
+      ...
+  "_u_foldCase", referenced from:
+      WebCore::equalIgnoringCase(unsigned short const*, char const*, unsigned int) in BCStringImplText.o
+      WebCore::StringImpl::find(char const*, int, bool) in BCStringImplText.o
+      WebCore::equalIgnoringCase(WebCore::StringImpl*, char const*) in BCStringImplText.o
+  "_u_memcasecmp", referenced from:
+      WebCore::StringImpl::find(WebCore::StringImpl*, int, bool) in BCStringImplText.o
+      WebCore::StringImpl::reverseFind(WebCore::StringImpl*, int, bool) in BCStringImplText.o
+      WebCore::equalIgnoringCase(WebCore::StringImpl*, WebCore::StringImpl*) in BCStringImplText.o
+  "_u_strFoldCase", referenced from:
+      WebCore::StringImpl::foldCase() in BCStringImplText.o
+  "_u_strToLower", referenced from:
+      WebCore::StringImpl::lower() in BCStringImplText.o
+      JSC::stringProtoFuncToLowerCase(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in StringPrototype.o
+  "_u_strToUpper", referenced from:
+      WebCore::StringImpl::upper() in BCStringImplText.o
+      JSC::stringProtoFuncToUpperCase(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in StringPrototype.o
+  "_u_tolower", referenced from:
+      JSC::Yarr::RegexPatternConstructor::atomPatternCharacter(unsigned short) in RegexCompiler.o
+      JSC::Yarr::CharacterClassConstructor::putChar(unsigned short) in RegexCompiler.o
+      JSC::Yarr::CharacterClassConstructor::putRange(unsigned short, unsigned short) in RegexCompiler.o
+      JSC::Yarr::ByteCompiler::atomPatternCharacter(unsigned short, int, unsigned int, unsigned int, JSC::Yarr::QuantifierType) in RegexInterpreter.o
+      JSC::Yarr::RegexGenerator::generatePatternCharacterSingle(JSC::Yarr::RegexGenerator::TermGenerationState&) in RegexJIT.o
+      JSC::Yarr::RegexGenerator::generatePatternCharacterFixed(JSC::Yarr::RegexGenerator::TermGenerationState&) in RegexJIT.o
+      JSC::Yarr::RegexGenerator::generatePatternCharacterGreedy(JSC::Yarr::RegexGenerator::TermGenerationState&) in RegexJIT.o
+      ...
+  "_u_toupper", referenced from:
+      JSC::Yarr::RegexPatternConstructor::atomPatternCharacter(unsigned short) in RegexCompiler.o
+      JSC::Yarr::CharacterClassConstructor::putChar(unsigned short) in RegexCompiler.o
+      JSC::Yarr::CharacterClassConstructor::putRange(unsigned short, unsigned short) in RegexCompiler.o
+      JSC::Yarr::ByteCompiler::atomPatternCharacter(unsigned short, int, unsigned int, unsigned int, JSC::Yarr::QuantifierType) in RegexInterpreter.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+
+      long long WebCore::toIntegralType<long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o                                                                                 [0/4978]
+      unsigned long long WebCore::toIntegralType<unsigned long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
+      ...
+  "_u_charType", referenced from:
+      JSC::Lexer::lex(void*, void*) in Lexer.o
+      JSC::isNonASCIIIdentStart(int) in Lexer.o
+      JSC::isNonASCIIIdentPart(int) in Lexer.o
+      JSC::functionProtoFuncToString(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in FunctionPrototype.o
+      JSC::isStrWhiteSpace(unsigned short) in JSGlobalObjectFunctions.o
+      JSC::parseInt(JSC::UString const&, int) in JSGlobalObjectFunctions.o
+      JSC::globalFuncParseFloat(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in JSGlobalObjectFunctions.o
+      ...
+  "_u_foldCase", referenced from:
+      WebCore::equalIgnoringCase(unsigned short const*, char const*, unsigned int) in BCStringImplText.o
+      WebCore::StringImpl::find(char const*, int, bool) in BCStringImplText.o
+      WebCore::equalIgnoringCase(WebCore::StringImpl*, char const*) in BCStringImplText.o
+  "_u_memcasecmp", referenced from:
+      WebCore::StringImpl::find(WebCore::StringImpl*, int, bool) in BCStringImplText.o
+      WebCore::StringImpl::reverseFind(WebCore::StringImpl*, int, bool) in BCStringImplText.o
+      WebCore::equalIgnoringCase(WebCore::StringImpl*, WebCore::StringImpl*) in BCStringImplText.o
+  "_u_strFoldCase", referenced from:
+      WebCore::StringImpl::foldCase() in BCStringImplText.o
+  "_u_strToLower", referenced from:
+      WebCore::StringImpl::lower() in BCStringImplText.o
+      JSC::stringProtoFuncToLowerCase(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in StringPrototype.o
+  "_u_strToUpper", referenced from:
+      WebCore::StringImpl::upper() in BCStringImplText.o
+      JSC::stringProtoFuncToUpperCase(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in StringPrototype.o
+  "_u_tolower", referenced from:
+      JSC::Yarr::RegexPatternConstructor::atomPatternCharacter(unsigned short) in RegexCompiler.o
+      JSC::Yarr::CharacterClassConstructor::putChar(unsigned short) in RegexCompiler.o
+      JSC::Yarr::CharacterClassConstructor::putRange(unsigned short, unsigned short) in RegexCompiler.o
+      JSC::Yarr::ByteCompiler::atomPatternCharacter(unsigned short, int, unsigned int, unsigned int, JSC::Yarr::QuantifierType) in RegexInterpreter.o
+      JSC::Yarr::RegexGenerator::generatePatternCharacterSingle(JSC::Yarr::RegexGenerator::TermGenerationState&) in RegexJIT.o
+      JSC::Yarr::RegexGenerator::generatePatternCharacterFixed(JSC::Yarr::RegexGenerator::TermGenerationState&) in RegexJIT.o
+      JSC::Yarr::RegexGenerator::generatePatternCharacterGreedy(JSC::Yarr::RegexGenerator::TermGenerationState&) in RegexJIT.o
+      ...
+  "_u_toupper", referenced from:
+      JSC::Yarr::RegexPatternConstructor::atomPatternCharacter(unsigned short) in RegexCompiler.o
+      JSC::Yarr::CharacterClassConstructor::putChar(unsigned short) in RegexCompiler.o
+      JSC::Yarr::CharacterClassConstructor::putRange(unsigned short, unsigned short) in RegexCompiler.o
+      JSC::Yarr::ByteCompiler::atomPatternCharacter(unsigned short, int, unsigned int, unsigned int, JSC::Yarr::QuantifierType) in RegexInterpreter.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+
+
+
+Unicode::toUpper  => u_toupper (BAL/Internationalization/WTF/ICU/BCUnicodeICU.h)
+
+grep u_toupper /usr/local/opt/icu4c/include/unicode/* -r
+/usr/local/opt/icu4c/include/unicode/uchar.h:        Corresponds to u_toupper. @stable ICU 2.4 */
+/usr/local/opt/icu4c/include/unicode/uchar.h:u_toupper(UChar32 c);
+/usr/local/opt/icu4c/include/unicode/urename.h:#define u_toupper U_ICU_ENTRY_POINT_RENAME(u_toupper)
+
+
