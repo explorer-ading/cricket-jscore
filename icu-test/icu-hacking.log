@@ -44,7 +44,87 @@ BAL/Internationalization/WTF/
     └── BCWTFStringText.o
 
 
------------------------------------------------------------------------------------------------------
+
+ubuntu1204
+--------------------------------------------------------------------------------------------------------------
+./JavaScriptCore/runtime/StringPrototype.o: In function `JSC::stringProtoFuncToLowerCase(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&)':
+StringPrototype.cpp:(.text+0x6497): undefined reference to `u_strToLower'
+StringPrototype.cpp:(.text+0x64e7): undefined reference to `u_strToLower'
+./JavaScriptCore/runtime/StringPrototype.o: In function `JSC::stringProtoFuncToUpperCase(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&)':
+StringPrototype.cpp:(.text+0x696a): undefined reference to `u_strToUpper'
+StringPrototype.cpp:(.text+0x69ba): undefined reference to `u_strToUpper'
+./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::simplifyWhiteSpace()':
+BCStringImplText.cpp:(.text+0x567): undefined reference to `u_charDirection'
+BCStringImplText.cpp:(.text+0x57f): undefined reference to `u_charDirection'
+./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::equalIgnoringCase(unsigned short const*, char const*, unsigned int)':
+BCStringImplText.cpp:(.text+0x960): undefined reference to `u_foldCase'
+BCStringImplText.cpp:(.text+0x979): undefined reference to `u_foldCase'
+./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::find(char const*, int, bool)':
+BCStringImplText.cpp:(.text+0xaaa): undefined reference to `u_foldCase'
+BCStringImplText.cpp:(.text+0xae2): undefined reference to `u_foldCase'
+BCStringImplText.cpp:(.text+0xb1e): undefined reference to `u_foldCase'
+./BAL/Internationalization/WTF/Text/BCStringImplText.o:BCStringImplText.cpp:(.text+0xb30): more undefined references to `u_foldCase' follow
+./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::find(WebCore::StringImpl*, int, bool)':
+BCStringImplText.cpp:(.text+0xdf4): undefined reference to `u_memcasecmp'
+./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::reverseFind(WebCore::StringImpl*, int, bool)':
+BCStringImplText.cpp:(.text+0x1085): undefined reference to `u_memcasecmp'
+./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::equalIgnoringCase(WebCore::StringImpl*, WebCore::StringImpl*)':
+BCStringImplText.cpp:(.text+0x12a2): undefined reference to `u_memcasecmp'
+./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::equalIgnoringCase(WebCore::StringImpl*, char const*)':
+BCStringImplText.cpp:(.text+0x13b7): undefined reference to `u_foldCase'
+BCStringImplText.cpp:(.text+0x13cb): undefined reference to `u_foldCase'
+./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::defaultWritingDirection()':
+BCStringImplText.cpp:(.text+0x1615): undefined reference to `u_charDirection'
+./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::lower()':
+BCStringImplText.cpp:(.text+0x24a7): undefined reference to `u_strToLower'
+BCStringImplText.cpp:(.text+0x2532): undefined reference to `u_strToLower'
+./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::stripWhiteSpace()':
+BCStringImplText.cpp:(.text+0x2921): undefined reference to `u_charDirection'
+BCStringImplText.cpp:(.text+0x299b): undefined reference to `u_charDirection'
+./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::foldCase()':
+BCStringImplText.cpp:(.text+0x2cf4): undefined reference to `u_strFoldCase'
+BCStringImplText.cpp:(.text+0x2d83): undefined reference to `u_strFoldCase'
+./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::upper()':
+BCStringImplText.cpp:(.text+0x2f7a): undefined reference to `u_strToUpper'
+BCStringImplText.cpp:(.text+0x3009): undefined reference to `u_strToUpper'
+./BAL/Internationalization/WTF/Text/BCWTFStringText.o: In function `WebCore::lengthOfCharactersAsInteger(unsigned short const*, unsigned int)':
+BCWTFStringText.cpp:(.text+0x8f): undefined reference to `u_charDirection'
+./BAL/Internationalization/WTF/Text/BCWTFStringText.o: In function `WebCore::String::percentage(int&) const':
+BCWTFStringText.cpp:(.text+0x124f): undefined reference to `u_charDirection'
+BCWTFStringText.cpp:(.text+0x148f): undefined reference to `u_charDirection'
+./BAL/Internationalization/WTF/Text/BCWTFStringText.o: In function `WebCore::charactersToIntStrict(unsigned short const*, unsigned int, bool*, int)':
+BCWTFStringText.cpp:(.text+0x2677): undefined reference to `u_charDirection'
+BCWTFStringText.cpp:(.text+0x286f): undefined reference to `u_charDirection'
+./BAL/Internationalization/WTF/Text/BCWTFStringText.o:BCWTFStringText.cpp:(.text+0x29a7): more undefined references to `u_charDirection' follow
+./JavaScriptCore/parser/Lexer.o: In function `JSC::isNonASCIIIdentPart(int)':
+Lexer.cpp:(.text+0x13): undefined reference to `u_charType'
+./JavaScriptCore/parser/Lexer.o: In function `JSC::isNonASCIIIdentStart(int)':
+Lexer.cpp:(.text+0x43): undefined reference to `u_charType'
+./JavaScriptCore/parser/Lexer.o: In function `JSC::Lexer::lex(void*, void*)':
+Lexer.cpp:(.text+0x133f): undefined reference to `u_charType'
+./JavaScriptCore/runtime/FunctionPrototype.o: In function `JSC::functionProtoFuncToString(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&)':
+FunctionPrototype.cpp:(.text+0xa2c): undefined reference to `u_charType'
+./JavaScriptCore/runtime/JSGlobalObjectFunctions.o: In function `JSC::parseInt(JSC::UString const&, int) [clone .constprop.78]':
+JSGlobalObjectFunctions.cpp:(.text+0x4df): undefined reference to `u_charType'
+./JavaScriptCore/runtime/JSGlobalObjectFunctions.o:JSGlobalObjectFunctions.cpp:(.text+0x6f7): more undefined references to `u_charType' follow
+collect2: ld returned 1 exit status
+make: *** [jsc] Error 1
+
+
+u_strToLower
+u_strToUpper
+u_charDirection
+u_foldCase
+u_memcasecmp
+u_strFoldCase
+u_charType
+
+
+
+
+
+Macos
+--------------------------------------------------------------------------------------------------------------
 
 Undefined symbols for architecture x86_64:                                                               
   "_CFDateFormatterCreate", referenced from:                                                                                                                                                                      
@@ -156,7 +236,7 @@ Undefined symbols for architecture x86_64:
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
-      long long WebCore::toIntegralType<long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o                                                                                 [0/4978]
+      long long WebCore::toIntegralType<long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
       unsigned long long WebCore::toIntegralType<unsigned long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
       ...
   "_u_charType", referenced from:
