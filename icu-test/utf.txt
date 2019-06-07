@@ -1,5 +1,12 @@
+...C...0...9...y...
 一
 二 天地会，反清复明
 三 天上人间，直接上天
 四 天空之城，还有什么不可能....
 五
+icu-config --version
+63.1
+icu-config --unicode-version
+11.0
+macOS provides libicucore.dylib (but nothing else).
+...x...0...9...b...
