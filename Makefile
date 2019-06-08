@@ -248,7 +248,7 @@ OBJS := $(patsubst %.cpp, %.o, $(SRC))
 
 .jsc_files:
 	mkdir -p $(OUTDIR)/JavaScriptCore
-	sh create_link.sh
+	sh BAL/Scripts/create_link.sh
 	#+++++ walk around solution start +++++
 	# bison3 is incompatible with bison2 ( http://savannah.gnu.org/forum/forum.php?forum_id=7663 )
 	#bison -d -p jscyy JavaScriptCore/parser/Grammar.y -o $(OUTDIR)/JavaScriptCore/Grammar.tab.c && mv -f $(OUTDIR)/JavaScriptCore/Grammar.tab.c $(OUTDIR)/JavaScriptCore/Grammar.cpp && mv -f $(OUTDIR)/JavaScriptCore/Grammar.tab.h $(OUTDIR)/JavaScriptCore/Grammar.h
