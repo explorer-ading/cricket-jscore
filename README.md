@@ -6,6 +6,7 @@
 * International character support
 
 ## Building 
+`make distclean`
 `make`
 
 ## Running test
