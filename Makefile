@@ -1,6 +1,5 @@
 
-# Search for keyword 'FIXME: adingx' for all modifications 
-
+TARGET := jsc
 CX := c++
 LD := c++
 
@@ -25,12 +24,19 @@ CXFLAGS := -Wall -W -Wcast-align -Wchar-subscripts -Wreturn-type -Wformat -Wform
 
 #CXFLAGS := -Wall -std=c++11 -g -O0 -c -Wno-narrowing
 
+
 LDFLAGS := -fno-rtti -fno-exceptions
+JSCLDFLAGS := -rdynamic -lpthread -lm
 
-TARGET := jsc
 
-JSCLDFLAGS := -rdynamic -lpthread -L$(USERLIBDIR) -Wl,-no-whole-archive -licudata -licui18n -licuio -licule -liculx -licutu -licuuc 
+# Close ICU dependens
+USE_ICU := no
 
+ifeq ($(USE_ICU), no)
+DEFINES += -DNICU
+else
+JSCLDFLAGS += -L$(USERLIBDIR) -Wl,-no-whole-archive -licudata -licui18n -licuio -licule -liculx -licutu -licuuc  
+endif
 
 INCDIR :=  \
 	-I$(OWBTRUNK) \

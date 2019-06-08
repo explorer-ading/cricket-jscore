@@ -1,11 +1,17 @@
 
-./JavaScriptCore/runtime/StringPrototype.cpp
 
-#include <wtf/unicode/Collator.h>
-#include <wtf/unicode/Unicode.h>
 
-./out/BAL/wtf/unicode/Unicode.h 
-./out/BAL/wtf/unicode/Collator.h  
+define NICU -> 
+Unicode::toUpper  => u_toupper (   BAL/Internationalization/WTF/ICU/BCUnicodeICU.h  )
+
+u_strToLower
+u_strToUpper
+u_charDirection
+u_foldCase
+u_memcasecmp
+u_strFoldCase
+u_charType
+
 
 ls ./out/BAL/wtf/unicode/
 Collator.h Encoding.h UTF8.h     Unicode.h
@@ -14,8 +20,6 @@ BAL/Internationalization/WTF//BCUTF8WTF.h
 BAL/Internationalization/WTF//BCCollatorWTF.h
 BAL/Internationalization/WTF//ICU/BCUnicodeICU.h
 BAL/Internationalization/WTF//ICU/BCEncodingICU.h
-
-
 
 tree BAL/Internationalization/WTF/
 BAL/Internationalization/WTF/
@@ -45,245 +49,191 @@ BAL/Internationalization/WTF/
 
 
 
-ubuntu1204
---------------------------------------------------------------------------------------------------------------
-./JavaScriptCore/runtime/StringPrototype.o: In function `JSC::stringProtoFuncToLowerCase(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&)':
-StringPrototype.cpp:(.text+0x6497): undefined reference to `u_strToLower'
-StringPrototype.cpp:(.text+0x64e7): undefined reference to `u_strToLower'
-./JavaScriptCore/runtime/StringPrototype.o: In function `JSC::stringProtoFuncToUpperCase(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&)':
-StringPrototype.cpp:(.text+0x696a): undefined reference to `u_strToUpper'
-StringPrototype.cpp:(.text+0x69ba): undefined reference to `u_strToUpper'
-./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::simplifyWhiteSpace()':
-BCStringImplText.cpp:(.text+0x567): undefined reference to `u_charDirection'
-BCStringImplText.cpp:(.text+0x57f): undefined reference to `u_charDirection'
-./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::equalIgnoringCase(unsigned short const*, char const*, unsigned int)':
-BCStringImplText.cpp:(.text+0x960): undefined reference to `u_foldCase'
-BCStringImplText.cpp:(.text+0x979): undefined reference to `u_foldCase'
-./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::find(char const*, int, bool)':
-BCStringImplText.cpp:(.text+0xaaa): undefined reference to `u_foldCase'
-BCStringImplText.cpp:(.text+0xae2): undefined reference to `u_foldCase'
-BCStringImplText.cpp:(.text+0xb1e): undefined reference to `u_foldCase'
-./BAL/Internationalization/WTF/Text/BCStringImplText.o:BCStringImplText.cpp:(.text+0xb30): more undefined references to `u_foldCase' follow
-./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::find(WebCore::StringImpl*, int, bool)':
-BCStringImplText.cpp:(.text+0xdf4): undefined reference to `u_memcasecmp'
-./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::reverseFind(WebCore::StringImpl*, int, bool)':
-BCStringImplText.cpp:(.text+0x1085): undefined reference to `u_memcasecmp'
-./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::equalIgnoringCase(WebCore::StringImpl*, WebCore::StringImpl*)':
-BCStringImplText.cpp:(.text+0x12a2): undefined reference to `u_memcasecmp'
-./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::equalIgnoringCase(WebCore::StringImpl*, char const*)':
-BCStringImplText.cpp:(.text+0x13b7): undefined reference to `u_foldCase'
-BCStringImplText.cpp:(.text+0x13cb): undefined reference to `u_foldCase'
-./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::defaultWritingDirection()':
-BCStringImplText.cpp:(.text+0x1615): undefined reference to `u_charDirection'
-./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::lower()':
-BCStringImplText.cpp:(.text+0x24a7): undefined reference to `u_strToLower'
-BCStringImplText.cpp:(.text+0x2532): undefined reference to `u_strToLower'
-./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::stripWhiteSpace()':
-BCStringImplText.cpp:(.text+0x2921): undefined reference to `u_charDirection'
-BCStringImplText.cpp:(.text+0x299b): undefined reference to `u_charDirection'
-./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::foldCase()':
-BCStringImplText.cpp:(.text+0x2cf4): undefined reference to `u_strFoldCase'
-BCStringImplText.cpp:(.text+0x2d83): undefined reference to `u_strFoldCase'
-./BAL/Internationalization/WTF/Text/BCStringImplText.o: In function `WebCore::StringImpl::upper()':
-BCStringImplText.cpp:(.text+0x2f7a): undefined reference to `u_strToUpper'
-BCStringImplText.cpp:(.text+0x3009): undefined reference to `u_strToUpper'
-./BAL/Internationalization/WTF/Text/BCWTFStringText.o: In function `WebCore::lengthOfCharactersAsInteger(unsigned short const*, unsigned int)':
-BCWTFStringText.cpp:(.text+0x8f): undefined reference to `u_charDirection'
-./BAL/Internationalization/WTF/Text/BCWTFStringText.o: In function `WebCore::String::percentage(int&) const':
-BCWTFStringText.cpp:(.text+0x124f): undefined reference to `u_charDirection'
-BCWTFStringText.cpp:(.text+0x148f): undefined reference to `u_charDirection'
-./BAL/Internationalization/WTF/Text/BCWTFStringText.o: In function `WebCore::charactersToIntStrict(unsigned short const*, unsigned int, bool*, int)':
-BCWTFStringText.cpp:(.text+0x2677): undefined reference to `u_charDirection'
-BCWTFStringText.cpp:(.text+0x286f): undefined reference to `u_charDirection'
-./BAL/Internationalization/WTF/Text/BCWTFStringText.o:BCWTFStringText.cpp:(.text+0x29a7): more undefined references to `u_charDirection' follow
-./JavaScriptCore/parser/Lexer.o: In function `JSC::isNonASCIIIdentPart(int)':
-Lexer.cpp:(.text+0x13): undefined reference to `u_charType'
-./JavaScriptCore/parser/Lexer.o: In function `JSC::isNonASCIIIdentStart(int)':
-Lexer.cpp:(.text+0x43): undefined reference to `u_charType'
-./JavaScriptCore/parser/Lexer.o: In function `JSC::Lexer::lex(void*, void*)':
-Lexer.cpp:(.text+0x133f): undefined reference to `u_charType'
-./JavaScriptCore/runtime/FunctionPrototype.o: In function `JSC::functionProtoFuncToString(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&)':
-FunctionPrototype.cpp:(.text+0xa2c): undefined reference to `u_charType'
-./JavaScriptCore/runtime/JSGlobalObjectFunctions.o: In function `JSC::parseInt(JSC::UString const&, int) [clone .constprop.78]':
-JSGlobalObjectFunctions.cpp:(.text+0x4df): undefined reference to `u_charType'
-./JavaScriptCore/runtime/JSGlobalObjectFunctions.o:JSGlobalObjectFunctions.cpp:(.text+0x6f7): more undefined references to `u_charType' follow
-collect2: ld returned 1 exit status
-make: *** [jsc] Error 1
 
-
-u_strToLower
-u_strToUpper
-u_charDirection
-u_foldCase
-u_memcasecmp
-u_strFoldCase
-u_charType
-
-
-
-
-
-Macos
 --------------------------------------------------------------------------------------------------------------
 
-Undefined symbols for architecture x86_64:                                                               
-  "_CFDateFormatterCreate", referenced from:                                                                                                                                                                      
-      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
-  "_CFDateFormatterCreateStringWithAbsoluteTime", referenced from:                                                                                                                                                
-      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
-  "_CFDateFormatterSetFormat", referenced from:                                                                                                                                                                   
-      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o                                                                       
-  "_CFLocaleCopyCurrent", referenced from:                                                               
-      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
-  "_CFRelease", referenced from:                                                                                                                                                                                  
-      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                            
-      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
-  "_CFStringCreateWithCString", referenced from:                                                                                                                                                                  
-      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                            
-  "_CFStringCreateWithCharacters", referenced from:                                                      
-      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
-  "_CFStringCreateWithFormatAndArguments", referenced from:                                                                                                                                                       
-      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                                                                                                                                     
-  "_CFStringGetCString", referenced from:                                                                                                                                                                         
-      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o                                                                                                                                     
-  "_CFStringGetCharacters", referenced from:        
-      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
-  "_CFStringGetLength", referenced from:
-      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o
-      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
-  "_CFStringGetMaximumSizeForEncoding", referenced from:
-      vprintf_stderr_common(char const*, __va_list_tag*) in BCAssertionsWTF.o
-  "JSC::ExecutablePool::systemAlloc(unsigned long)", referenced from:
-      JSC::ExecutablePool::ExecutablePool(unsigned long) in JIT.o
-      JSC::ExecutablePool::poolAllocate(unsigned long) in JIT.o
-      JSC::ExecutablePool::ExecutablePool(unsigned long) in JITOpcodes.o
-      JSC::ExecutablePool::poolAllocate(unsigned long) in JITOpcodes.o
-      JSC::ExecutablePool::poolAllocate(unsigned long) in JITPropertyAccess.o
-      JSC::ExecutablePool::poolAllocate(unsigned long) in ThunkGenerators.o
-      JSC::ExecutablePool::ExecutablePool(unsigned long) in JSGlobalData.o
-      ...
-  "JSC::ExecutablePool::systemRelease(JSC::ExecutablePool::Allocation const&)", referenced from:
-      JSC::RegExp::~RegExp() in CodeBlock.o
-      JSC::RegExp::~RegExp() in BytecodeGenerator.o
-      JSC::RegExp::~RegExp() in NodesCodegen.o
-      JSC::RegExp::~RegExp() in Interpreter.o
-      JSC::JIT::privateCompile() in JIT.o
-      JSC::ExecutableAllocator::poolForSize(unsigned long) in JIT.o
-      JSC::JIT::privateCompileCTIMachineTrampolines(WTF::RefPtr<JSC::ExecutablePool>*, JSC::JSGlobalData*, JSC::TrampolineStructure*) in JITOpcodes.o
-      ...
-  "JSC::ExecutableAllocator::intializePageSize()", referenced from:
-      JSC::ExecutableAllocator::ExecutableAllocator() in JSGlobalData.o
-  "JSC::startProfilerServerIfNeeded()", referenced from:
-      JSC::JSGlobalData::JSGlobalData(JSC::JSGlobalData::GlobalDataType, JSC::ThreadStackType) in JSGlobalData.o
-  "WTF::isMainThread()", referenced from:
-      WTF::callOnMainThreadAndWait(void (*)(void*), void*) in BCMainThreadWTF.o
-  "WTF::initializeMainThreadToProcessMainThreadPlatform()", referenced from:
-      WTF::initializeMainThreadToProcessMainThreadOnce() in BCMainThreadWTF.o
-  "_add_history", referenced from:
-      jscmain(int, char**, JSC::JSGlobalData*) in jsc.o
-  "_kCFAbsoluteTimeIntervalSince1970", referenced from:
-      JSC::formatLocaleDate(JSC::ExecState*, JSC::DateInstance*, double, JSC::LocaleDateTimeFormat, JSC::ArgList const&) in DatePrototype.o
-  "_readline", referenced from:
-      jscmain(int, char**, JSC::JSGlobalData*) in jsc.o
-  "_u_charDirection", referenced from:
-      WebCore::StringImpl::stripWhiteSpace() in BCStringImplText.o
-      WebCore::StringImpl::simplifyWhiteSpace() in BCStringImplText.o
-      WebCore::StringImpl::defaultWritingDirection() in BCStringImplText.o
-      int WebCore::toIntegralType<int>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
-      unsigned int WebCore::toIntegralType<unsigned int>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
-      long long WebCore::toIntegralType<long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
-      unsigned long long WebCore::toIntegralType<unsigned long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
-      ...
-  "_u_charType", referenced from:
-      JSC::Lexer::lex(void*, void*) in Lexer.o
-      JSC::isNonASCIIIdentStart(int) in Lexer.o
-      JSC::isNonASCIIIdentPart(int) in Lexer.o
-      JSC::functionProtoFuncToString(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in FunctionPrototype.o
-      JSC::isStrWhiteSpace(unsigned short) in JSGlobalObjectFunctions.o
-      JSC::parseInt(JSC::UString const&, int) in JSGlobalObjectFunctions.o
-      JSC::globalFuncParseFloat(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in JSGlobalObjectFunctions.o
-      ...
-  "_u_foldCase", referenced from:
-      WebCore::equalIgnoringCase(unsigned short const*, char const*, unsigned int) in BCStringImplText.o
-      WebCore::StringImpl::find(char const*, int, bool) in BCStringImplText.o
-      WebCore::equalIgnoringCase(WebCore::StringImpl*, char const*) in BCStringImplText.o
-  "_u_memcasecmp", referenced from:
-      WebCore::StringImpl::find(WebCore::StringImpl*, int, bool) in BCStringImplText.o
-      WebCore::StringImpl::reverseFind(WebCore::StringImpl*, int, bool) in BCStringImplText.o
-      WebCore::equalIgnoringCase(WebCore::StringImpl*, WebCore::StringImpl*) in BCStringImplText.o
-  "_u_strFoldCase", referenced from:
-      WebCore::StringImpl::foldCase() in BCStringImplText.o
-  "_u_strToLower", referenced from:
-      WebCore::StringImpl::lower() in BCStringImplText.o
-      JSC::stringProtoFuncToLowerCase(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in StringPrototype.o
-  "_u_strToUpper", referenced from:
-      WebCore::StringImpl::upper() in BCStringImplText.o
-      JSC::stringProtoFuncToUpperCase(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in StringPrototype.o
-  "_u_tolower", referenced from:
-      JSC::Yarr::RegexPatternConstructor::atomPatternCharacter(unsigned short) in RegexCompiler.o
-      JSC::Yarr::CharacterClassConstructor::putChar(unsigned short) in RegexCompiler.o
-      JSC::Yarr::CharacterClassConstructor::putRange(unsigned short, unsigned short) in RegexCompiler.o
-      JSC::Yarr::ByteCompiler::atomPatternCharacter(unsigned short, int, unsigned int, unsigned int, JSC::Yarr::QuantifierType) in RegexInterpreter.o
-      JSC::Yarr::RegexGenerator::generatePatternCharacterSingle(JSC::Yarr::RegexGenerator::TermGenerationState&) in RegexJIT.o
-      JSC::Yarr::RegexGenerator::generatePatternCharacterFixed(JSC::Yarr::RegexGenerator::TermGenerationState&) in RegexJIT.o
-      JSC::Yarr::RegexGenerator::generatePatternCharacterGreedy(JSC::Yarr::RegexGenerator::TermGenerationState&) in RegexJIT.o
-      ...
-  "_u_toupper", referenced from:
-      JSC::Yarr::RegexPatternConstructor::atomPatternCharacter(unsigned short) in RegexCompiler.o
-      JSC::Yarr::CharacterClassConstructor::putChar(unsigned short) in RegexCompiler.o
-      JSC::Yarr::CharacterClassConstructor::putRange(unsigned short, unsigned short) in RegexCompiler.o
-      JSC::Yarr::ByteCompiler::atomPatternCharacter(unsigned short, int, unsigned int, unsigned int, JSC::Yarr::QuantifierType) in RegexInterpreter.o
-ld: symbol(s) not found for architecture x86_64
-clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
-      long long WebCore::toIntegralType<long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
-      unsigned long long WebCore::toIntegralType<unsigned long long>(unsigned short const*, unsigned long, bool*, int) in BCWTFStringText.o
-      ...
-  "_u_charType", referenced from:
-      JSC::Lexer::lex(void*, void*) in Lexer.o
-      JSC::isNonASCIIIdentStart(int) in Lexer.o
-      JSC::isNonASCIIIdentPart(int) in Lexer.o
-      JSC::functionProtoFuncToString(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in FunctionPrototype.o
-      JSC::isStrWhiteSpace(unsigned short) in JSGlobalObjectFunctions.o
-      JSC::parseInt(JSC::UString const&, int) in JSGlobalObjectFunctions.o
-      JSC::globalFuncParseFloat(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in JSGlobalObjectFunctions.o
-      ...
-  "_u_foldCase", referenced from:
-      WebCore::equalIgnoringCase(unsigned short const*, char const*, unsigned int) in BCStringImplText.o
-      WebCore::StringImpl::find(char const*, int, bool) in BCStringImplText.o
-      WebCore::equalIgnoringCase(WebCore::StringImpl*, char const*) in BCStringImplText.o
-  "_u_memcasecmp", referenced from:
-      WebCore::StringImpl::find(WebCore::StringImpl*, int, bool) in BCStringImplText.o
-      WebCore::StringImpl::reverseFind(WebCore::StringImpl*, int, bool) in BCStringImplText.o
-      WebCore::equalIgnoringCase(WebCore::StringImpl*, WebCore::StringImpl*) in BCStringImplText.o
-  "_u_strFoldCase", referenced from:
-      WebCore::StringImpl::foldCase() in BCStringImplText.o
-  "_u_strToLower", referenced from:
-      WebCore::StringImpl::lower() in BCStringImplText.o
-      JSC::stringProtoFuncToLowerCase(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in StringPrototype.o
-  "_u_strToUpper", referenced from:
-      WebCore::StringImpl::upper() in BCStringImplText.o
-      JSC::stringProtoFuncToUpperCase(JSC::ExecState*, JSC::JSObject*, JSC::JSValue, JSC::ArgList const&) in StringPrototype.o
-  "_u_tolower", referenced from:
-      JSC::Yarr::RegexPatternConstructor::atomPatternCharacter(unsigned short) in RegexCompiler.o
-      JSC::Yarr::CharacterClassConstructor::putChar(unsigned short) in RegexCompiler.o
-      JSC::Yarr::CharacterClassConstructor::putRange(unsigned short, unsigned short) in RegexCompiler.o
-      JSC::Yarr::ByteCompiler::atomPatternCharacter(unsigned short, int, unsigned int, unsigned int, JSC::Yarr::QuantifierType) in RegexInterpreter.o
-      JSC::Yarr::RegexGenerator::generatePatternCharacterSingle(JSC::Yarr::RegexGenerator::TermGenerationState&) in RegexJIT.o
-      JSC::Yarr::RegexGenerator::generatePatternCharacterFixed(JSC::Yarr::RegexGenerator::TermGenerationState&) in RegexJIT.o
-      JSC::Yarr::RegexGenerator::generatePatternCharacterGreedy(JSC::Yarr::RegexGenerator::TermGenerationState&) in RegexJIT.o
-      ...
-  "_u_toupper", referenced from:
-      JSC::Yarr::RegexPatternConstructor::atomPatternCharacter(unsigned short) in RegexCompiler.o
-      JSC::Yarr::CharacterClassConstructor::putChar(unsigned short) in RegexCompiler.o
-      JSC::Yarr::CharacterClassConstructor::putRange(unsigned short, unsigned short) in RegexCompiler.o
-      JSC::Yarr::ByteCompiler::atomPatternCharacter(unsigned short, int, unsigned int, unsigned int, JSC::Yarr::QuantifierType) in RegexInterpreter.o
-ld: symbol(s) not found for architecture x86_64
-clang: error: linker command failed with exit code 1 (use -v to see invocation)
+1.  doc/include/unicode/ustring.h
+
+
+/**
+ * Lowercase the characters in a string.
+ * Casing is locale-dependent and context-sensitive.
+ * The result may be longer or shorter than the original.
+ * The source string and the destination buffer are allowed to overlap.
+ *
+ * @param dest      A buffer for the result string. The result will be zero-terminated if
+ *                  the buffer is large enough.
+ * @param destCapacity The size of the buffer (number of UChars). If it is 0, then
+ *                  dest may be NULL and the function will only return the length of the result
+ *                  without writing any of the result string.
+ * @param src       The original string
+ * @param srcLength The length of the original string. If -1, then src must be zero-terminated.
+ * @param locale    The locale to consider, or "" for the root locale or NULL for the default locale.
+ * @param pErrorCode Must be a valid pointer to an error code value,
+ *                  which must not indicate a failure before the function call.
+ * @return The length of the result string. It may be greater than destCapacity. In that case,
+ *         only some of the result was written to the destination buffer.
+ * @stable ICU 2.0
+ */
+U_STABLE int32_t U_EXPORT2
+u_strToLower(UChar *dest, int32_t destCapacity,
+             const UChar *src, int32_t srcLength,
+             const char *locale,
+             UErrorCode *pErrorCode);
+
+
+/**
+ * Uppercase the characters in a string.
+ * Casing is locale-dependent and context-sensitive.
+ * The result may be longer or shorter than the original.
+ * The source string and the destination buffer are allowed to overlap.
+ *
+ * @param dest      A buffer for the result string. The result will be zero-terminated if
+ *                  the buffer is large enough.
+ * @param destCapacity The size of the buffer (number of UChars). If it is 0, then
+ *                  dest may be NULL and the function will only return the length of the result
+ *                  without writing any of the result string.
+ * @param src       The original string
+ * @param srcLength The length of the original string. If -1, then src must be zero-terminated.
+ * @param locale    The locale to consider, or "" for the root locale or NULL for the default locale.
+ * @param pErrorCode Must be a valid pointer to an error code value,
+ *                  which must not indicate a failure before the function call.
+ * @return The length of the result string. It may be greater than destCapacity. In that case,
+ *         only some of the result was written to the destination buffer.
+ * @stable ICU 2.0
+ */
+U_STABLE int32_t U_EXPORT2
+u_strToUpper(UChar *dest, int32_t destCapacity,
+             const UChar *src, int32_t srcLength,
+             const char *locale,
+             UErrorCode *pErrorCode);
+
+
+/**
+ * Case-fold the characters in a string.
+ * Case-folding is locale-independent and not context-sensitive,
+ * but there is an option for whether to include or exclude mappings for dotted I
+ * and dotless i that are marked with 'I' in CaseFolding.txt.
+ * The result may be longer or shorter than the original.
+ * The source string and the destination buffer are allowed to overlap.
+ *
+ * @param dest      A buffer for the result string. The result will be zero-terminated if
+ *                  the buffer is large enough.
+ * @param destCapacity The size of the buffer (number of UChars). If it is 0, then
+ *                  dest may be NULL and the function will only return the length of the result
+ *                  without writing any of the result string.
+ * @param src       The original string
+ * @param srcLength The length of the original string. If -1, then src must be zero-terminated.
+ * @param options   Either U_FOLD_CASE_DEFAULT or U_FOLD_CASE_EXCLUDE_SPECIAL_I
+ * @param pErrorCode Must be a valid pointer to an error code value,
+ *                  which must not indicate a failure before the function call.
+ * @return The length of the result string. It may be greater than destCapacity. In that case,
+ *         only some of the result was written to the destination buffer.
+ * @stable ICU 2.0
+ */		 
+U_STABLE int32_t U_EXPORT2
+u_strFoldCase(UChar *dest, int32_t destCapacity,
+              const UChar *src, int32_t srcLength,
+              uint32_t options,
+              UErrorCode *pErrorCode);
+
+
+/**
+ * Compare two strings case-insensitively using full case folding.
+ * This is equivalent to u_strcmp(u_strFoldCase(s1, n, options),
+ * u_strFoldCase(s2, n, options)).
+ *
+ * @param s1 A string to compare.
+ * @param s2 A string to compare.
+ * @param length The number of characters in each string to case-fold and then compare.
+ * @param options A bit set of options:
+ *   - U_FOLD_CASE_DEFAULT or 0 is used for default options:
+ *     Comparison in code unit order with default case folding.
+ *
+ *   - U_COMPARE_CODE_POINT_ORDER
+ *     Set to choose code point order instead of code unit order
+ *     (see u_strCompare for details).
+ *
+ *   - U_FOLD_CASE_EXCLUDE_SPECIAL_I
+ *
+ * @return A negative, zero, or positive integer indicating the comparison result.
+ * @stable ICU 2.0
+ */
+U_STABLE int32_t U_EXPORT2
+u_memcasecmp(const UChar *s1, const UChar *s2, int32_t length, uint32_t options);
+	  
 
 
 
-Unicode::toUpper  => u_toupper (BAL/Internationalization/WTF/ICU/BCUnicodeICU.h)
+2.  doc/include/unicode/uchar.h
+
+/**
+ * Returns the bidirectional category value for the code point,
+ * which is used in the Unicode bidirectional algorithm
+ * (UAX #9 http://www.unicode.org/reports/tr9/).
+ * Note that some <em>unassigned</em> code points have bidi values
+ * of R or AL because they are in blocks that are reserved
+ * for Right-To-Left scripts.
+ *
+ * Same as java.lang.Character.getDirectionality()
+ *
+ * @param c the code point to be tested
+ * @return the bidirectional category (UCharDirection) value
+ *
+ * @see UCharDirection
+ * @stable ICU 2.0
+ */
+U_STABLE UCharDirection U_EXPORT2
+u_charDirection(UChar32 c);
+
+
+
+/**
+ * The given character is mapped to its case folding equivalent according to
+ * UnicodeData.txt and CaseFolding.txt;
+ * if the character has no case folding equivalent, the character
+ * itself is returned.
+ *
+ * This function only returns the simple, single-code point case mapping.
+ * Full case mappings should be used whenever possible because they produce
+ * better results by working on whole strings.
+ * They take into account the string context and the language and can map
+ * to a result string with a different length as appropriate.
+ * Full case mappings are applied by the string case mapping functions,
+ * see ustring.h and the UnicodeString class.
+ * See also the User Guide chapter on C/POSIX migration:
+ * http://icu-project.org/userguide/posix.html#case_mappings
+ *
+ * @param c the code point to be mapped
+ * @param options Either U_FOLD_CASE_DEFAULT or U_FOLD_CASE_EXCLUDE_SPECIAL_I
+ * @return the Simple_Case_Folding of the code point, if any;
+ *         otherwise the code point itself.
+ * @stable ICU 2.0
+ */
+U_STABLE UChar32 U_EXPORT2
+u_foldCase(UChar32 c, uint32_t options);
+
+
+
+/**
+ * Returns the general category value for the code point.
+ *
+ * Same as java.lang.Character.getType().
+ *
+ * @param c the code point to be tested
+ * @return the general category (UCharCategory) value
+ *
+ * @see UCharCategory
+ * @stable ICU 2.0
+ */
+U_STABLE int8_t U_EXPORT2
+u_charType(UChar32 c);
+
+
+
+
+--------------------------------------------------------------------------------------------------------------
 
 grep u_toupper /usr/local/opt/icu4c/include/unicode/* -r
 /usr/local/opt/icu4c/include/unicode/uchar.h:        Corresponds to u_toupper. @stable ICU 2.4 */

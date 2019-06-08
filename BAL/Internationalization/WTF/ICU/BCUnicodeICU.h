@@ -28,6 +28,8 @@
 #include <unicode/ustring.h>
 #include <unicode/utf16.h>
 
+
+
 namespace WTF {
 namespace Unicode {
 
@@ -117,23 +119,35 @@ enum CharCategory {
 
 inline UChar32 foldCase(UChar32 c)
 {
+#if !defined(NICU)
     return u_foldCase(c, U_FOLD_CASE_DEFAULT);
+#else 
+	return 0;
+#endif
 }
 
 inline int foldCase(UChar* result, int resultLength, const UChar* src, int srcLength, bool* error)
 {
+#if !defined(NICU)
     UErrorCode status = U_ZERO_ERROR;
     int realLength = u_strFoldCase(result, resultLength, src, srcLength, U_FOLD_CASE_DEFAULT, &status);
     *error = !U_SUCCESS(status);
     return realLength;
+#else
+	return 0;
+#endif
 }
 
 inline int toLower(UChar* result, int resultLength, const UChar* src, int srcLength, bool* error)
 {
+#if !defined(NICU)
     UErrorCode status = U_ZERO_ERROR;
     int realLength = u_strToLower(result, resultLength, src, srcLength, "", &status);
     *error = !!U_FAILURE(status);
     return realLength;
+#else
+	return 0; 
+#endif
 }
 
 inline UChar32 toLower(UChar32 c)
@@ -148,10 +162,14 @@ inline UChar32 toUpper(UChar32 c)
 
 inline int toUpper(UChar* result, int resultLength, const UChar* src, int srcLength, bool* error)
 {
+#if !defined(NICU)
     UErrorCode status = U_ZERO_ERROR;
     int realLength = u_strToUpper(result, resultLength, src, srcLength, "", &status);
     *error = !!U_FAILURE(status);
     return realLength;
+#else
+	return 0;
+#endif
 }
 
 inline UChar32 toTitleCase(UChar32 c)
@@ -171,7 +189,11 @@ inline bool isAlphanumeric(UChar32 c)
 
 inline bool isSeparatorSpace(UChar32 c)
 {
+#if !defined(NICU)
     return u_charType(c) == U_SPACE_SEPARATOR;
+#else
+	return false;
+#endif
 }
 
 inline bool isPrintableChar(UChar32 c)
@@ -202,12 +224,20 @@ inline UChar32 mirroredChar(UChar32 c)
 
 inline CharCategory category(UChar32 c)
 {
+#if !defined(NICU)
     return static_cast<CharCategory>(U_GET_GC_MASK(c));
+#else
+	return NoCategory ;
+#endif
 }
 
 inline Direction direction(UChar32 c)
 {
+#if !defined(NICU)
     return static_cast<Direction>(u_charDirection(c));
+#else 
+	return LeftToRight;
+#endif
 }
 
 inline bool isLower(UChar32 c)
@@ -227,7 +257,11 @@ inline DecompositionType decompositionType(UChar32 c)
 
 inline int umemcasecmp(const UChar* a, const UChar* b, int len)
 {
+#if !defined(NICU)
     return u_memcasecmp(a, b, len, U_FOLD_CASE_DEFAULT);
+#else
+	return 0;
+#endif
 }
 
 } }
