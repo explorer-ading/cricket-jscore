@@ -1,10 +1,14 @@
 
-Goal:
-- Compiling jsc binary executable;
-- Simplified source code structure;
-- Drop the dependencies on generated files ( source files and header files );
+Goal :
 
-Roadmap:
+- C++11 support ;
+- Compiling jsc binary executable ;
+- Simplified source code structure ;
+- Drop the dependencies on generated files ( source files and header files ) ;
+
+
+Hacking Roadmaps : 
+
 - BAL
 	unicode dependencies
 	system memory alloc/release
@@ -16,12 +20,14 @@ Roadmap:
 	remove features : reg, math, date, event-listener, JIT, function 
 	
 
+Porting :
 
-Porting:
+- Config
+	Base/config.h
+	JavaScriptCore/config.h
 
 - Platform 
 	Base/wtf/Platform.h
-	JavaScriptCore/wtf/Platform.h
 
 - Defines in Makefile
 	DEFINES := \
@@ -31,9 +37,7 @@ Porting:
         -DWTF_USE_PTHREADS=1 \
         -DHAVE_PTHREAD_RWLOCK=1
 
-	WTF_CHANGES , 与内存访问有关，新增了visit接口。
+	WTF_CHANGES , Memory Access related and visit api added. 
 	NDEBUG , No Debug defined 
-
-
 
 

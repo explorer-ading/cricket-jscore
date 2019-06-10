@@ -4,7 +4,7 @@
 * On research purpose 
 
 ## Architecture
-...to be continued...
+![arch](./doc/arch.png)
 
 ## Dependencies
 
@@ -22,8 +22,8 @@ make
 ![cricket-jscore](./doc/cricket-jscore.png)
 
 ## Other JavaScript Engine Reference 
-* [mozjs](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey)
-* [v8](https://v8.dev/)
+* [mozjs](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey) - Moziilla SpiderMonkey
+* [v8](https://v8.dev/) - Google V8 
 
 
 ## MIT License
