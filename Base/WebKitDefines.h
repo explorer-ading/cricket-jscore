@@ -29,17 +29,8 @@
 #ifndef WebKitDefines_h
 #define WebKitDefines_h
 
-#if defined(WIN32) || defined(_WIN32)
-    #ifdef BUILDING_WEBKIT
-        #define WEBKIT_OWB_API __declspec(dllexport)
-    #else
-        #define WEBKIT_OWB_API __declspec(dllimport)
-    #endif
-    #define WEBKIT_OWB_OBSOLETE_API WEBKIT_OWB_API
-#else
-    #define WEBKIT_OWB_API __attribute__((visibility("default")))
-    #define WEBKIT_OWB_OBSOLETE_API WEBKIT_OWB_API __attribute__((deprecated))
-#endif
+#define WEBKIT_OWB_API __attribute__((visibility("default")))
+#define WEBKIT_OWB_OBSOLETE_API WEBKIT_OWB_API __attribute__((deprecated))
 
 #if !defined(PLATFORM)
     #define PLATFORM(WTF_FEATURE) (defined WTF_PLATFORM_##WTF_FEATURE  && WTF_PLATFORM_##WTF_FEATURE)
@@ -60,12 +51,5 @@
     #define ENABLE(WTF_FEATURE) (defined( ENABLE_##WTF_FEATURE ) && ENABLE_##WTF_FEATURE)
 #endif
 
-#if defined(BUILDING_GTK__)
-#define WTF_PLATFORM_GTK 1
-#endif
-
-#if defined(BUILDING_QT__)
-#define WTF_PLATFORM_QT 1
-#endif
 
 #endif //WebKitDefines_h

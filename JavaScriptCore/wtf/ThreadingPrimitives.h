@@ -37,61 +37,23 @@
 #include <wtf/Locker.h>
 #include <wtf/Noncopyable.h>
 
-#if OS(WINDOWS)
-#include <windows.h>
-#endif
-
 #if USE(PTHREADS)
 #include <pthread.h>
-#elif PLATFORM(GTK)
-#include "GOwnPtr.h"
-typedef struct _GMutex GMutex;
-typedef struct _GCond GCond;
-#endif
-
-#if PLATFORM(QT)
-#include <qglobal.h>
-QT_BEGIN_NAMESPACE
-class QMutex;
-class QWaitCondition;
-QT_END_NAMESPACE
 #endif
 
 namespace WTF {
 
 #if USE(PTHREADS)
 typedef pthread_mutex_t PlatformMutex;
+
 #if HAVE(PTHREAD_RWLOCK)
 typedef pthread_rwlock_t PlatformReadWriteLock;
 #else
 typedef void* PlatformReadWriteLock;
 #endif
-typedef pthread_cond_t PlatformCondition;
-#elif PLATFORM(GTK)
-typedef GOwnPtr<GMutex> PlatformMutex;
-typedef void* PlatformReadWriteLock; // FIXME: Implement.
-typedef GOwnPtr<GCond> PlatformCondition;
-#elif PLATFORM(QT)
-typedef QT_PREPEND_NAMESPACE(QMutex)* PlatformMutex;
-typedef void* PlatformReadWriteLock; // FIXME: Implement.
-typedef QT_PREPEND_NAMESPACE(QWaitCondition)* PlatformCondition;
-#elif OS(WINDOWS)
-struct PlatformMutex {
-    CRITICAL_SECTION m_internalMutex;
-    size_t m_recursionCount;
-};
-typedef void* PlatformReadWriteLock; // FIXME: Implement.
-struct PlatformCondition {
-    size_t m_waitersGone;
-    size_t m_waitersBlocked;
-    size_t m_waitersToUnblock; 
-    HANDLE m_blockLock;
-    HANDLE m_blockQueue;
-    HANDLE m_unblockLock;
 
-    bool timedWait(PlatformMutex&, DWORD durationMilliseconds);
-    void signal(bool unblockAll);
-};
+typedef pthread_cond_t PlatformCondition;
+
 #else
 typedef void* PlatformMutex;
 typedef void* PlatformReadWriteLock;

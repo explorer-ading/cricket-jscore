@@ -29,17 +29,10 @@
 #include "Logging.h"
 #include <Assertions.h>
 
-#if PLATFORM(GTK) || PLATFORM(EFL)
-    #define supressNotImplementedWarning() getenv("DISABLE_NI_WARNING")
-#elif PLATFORM(QT)
-    #include <QByteArray>
-    #define supressNotImplementedWarning() !qgetenv("DISABLE_NI_WARNING").isEmpty()
+#ifdef NDEBUG
+#define supressNotImplementedWarning() true
 #else
-    #ifdef NDEBUG
-        #define supressNotImplementedWarning() true
-    #else
-        #define supressNotImplementedWarning() false
-    #endif
+#define supressNotImplementedWarning() false
 #endif
 
 #define balNotImplemented() notImplemented();

@@ -45,9 +45,6 @@
 #include "SDLCairo/BALTypeSDLCairo.h"
 #endif
 
-#if PLATFORM(GTK)
-#include "Gtk/BALTypeGtk.h"
-#endif
 
 #if PLATFORM()
 #include ""

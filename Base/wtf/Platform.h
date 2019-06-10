@@ -465,22 +465,11 @@
 /* PLATFORM(CHROMIUM) */
 /* PLATFORM(QT) */
 /* PLATFORM(WX) */
-/* PLATFORM(GTK) */
 /* PLATFORM(HAIKU) */
 /* PLATFORM(MAC) */
 /* PLATFORM(WIN) */
 #if defined(BUILDING_CHROMIUM__)
 #define WTF_PLATFORM_CHROMIUM 1
-#elif defined(BUILDING_QT__)
-#define WTF_PLATFORM_QT 1
-#elif defined(BUILDING_WX__)
-#define WTF_PLATFORM_WX 1
-#elif defined(BUILDING_GTK__)
-#define WTF_PLATFORM_GTK 1
-#elif defined(BUILDING_HAIKU__)
-#define WTF_PLATFORM_HAIKU 1
-#elif defined(BUILDING_BREWMP__)
-#define WTF_PLATFORM_BREWMP 1
 #if defined(AEE_SIMULATOR)
 #define WTF_PLATFORM_BREWMP_SIMULATOR 1
 #else
@@ -494,11 +483,6 @@
 #define WTF_PLATFORM_WIN 1
 #endif
 
-/* PLATFORM(IPHONE) */
-/* FIXME: this is sometimes used as an OS switch and sometimes for higher-level things */
-#if (defined(TARGET_OS_EMBEDDED) && TARGET_OS_EMBEDDED) || (defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE)
-#define WTF_PLATFORM_IPHONE 1
-#endif
 
 /* PLATFORM(IPHONE_SIMULATOR) */
 #if defined(TARGET_IPHONE_SIMULATOR) && TARGET_IPHONE_SIMULATOR
@@ -512,12 +496,6 @@
 #define WTF_PLATFORM_IPHONE 0
 #endif
 
-/* PLATFORM(ANDROID) */
-/* FIXME: this is sometimes used as an OS() switch, and other times to drive
-   policy choices */
-#if defined(ANDROID)
-#define WTF_PLATFORM_ANDROID 1
-#endif
 
 /* Graphics engines */
 
@@ -542,9 +520,6 @@
 #endif
 #endif
 
-#if PLATFORM(GTK)
-#define WTF_PLATFORM_CAIRO 1
-#endif
 
 
 #if OS(WINCE) && PLATFORM(QT)
@@ -587,18 +562,7 @@
 
 #endif  /* OS(WINCE) && !PLATFORM(QT) */
 
-#if PLATFORM(QT)
-#define WTF_USE_QT4_UNICODE 1
-#if !defined(ENABLE_WIDGETS_10_SUPPORT)
-#define ENABLE_WIDGETS_10_SUPPORT 1
-#endif
-#elif OS(WINCE)
-#define WTF_USE_WINCE_UNICODE 1
-#elif PLATFORM(GTK)
-/* The GTK+ Unicode backend is configurable */
-#else
 #define WTF_USE_ICU_UNICODE 0
-#endif
 
 #if PLATFORM(MAC) && !PLATFORM(IPHONE)
 #define WTF_PLATFORM_CF 1
@@ -628,42 +592,6 @@
 #define WTF_USE_CARBON_SECURE_INPUT_MODE 1
 #endif
 
-#if PLATFORM(QT) && OS(DARWIN)
-#define WTF_PLATFORM_CF 1
-#endif
-
-#if PLATFORM(IPHONE)
-#define ENABLE_CONTEXT_MENUS 0
-#define ENABLE_DRAG_SUPPORT 0
-#define ENABLE_FTPDIR 1
-#define ENABLE_GEOLOCATION 1
-#define ENABLE_ICONDATABASE 0
-#define ENABLE_INSPECTOR 0
-#define ENABLE_JAVA_BRIDGE 0
-#define ENABLE_NETSCAPE_PLUGIN_API 0
-#define ENABLE_ORIENTATION_EVENTS 1
-#define ENABLE_REPAINT_THROTTLING 1
-#define HAVE_READLINE 1
-#define WTF_PLATFORM_CF 1
-#define WTF_USE_PTHREADS 1
-#define HAVE_PTHREAD_RWLOCK 1
-#endif
-
-#if PLATFORM(ANDROID)
-#define WTF_USE_PTHREADS 1
-#define WTF_PLATFORM_SGL 1
-#define USE_SYSTEM_MALLOC 1
-#define ENABLE_JAVA_BRIDGE 1
-#define LOG_DISABLED 1
-/* Prevents Webkit from drawing the caret in textfields and textareas
-   This prevents unnecessary invals. */
-#define ENABLE_TEXT_CARET 1
-#define ENABLE_JAVASCRIPT_DEBUGGER 0
-#endif
-
-#if PLATFORM(WIN)
-#define WTF_USE_WININET 1
-#endif
 
 #if PLATFORM(WX)
 #define ENABLE_ASSEMBLER 1
@@ -678,25 +606,6 @@
 #endif
 #endif
 
-#if PLATFORM(GTK)
-#if HAVE(PTHREAD_H)
-#define WTF_USE_PTHREADS 1
-#define HAVE_PTHREAD_RWLOCK 1
-#endif
-#endif
-
-#if PLATFORM(HAIKU)
-#define HAVE_POSIX_MEMALIGN 1
-#define WTF_USE_CURL 1
-#define WTF_USE_PTHREADS 1
-#define HAVE_PTHREAD_RWLOCK 1
-#define USE_SYSTEM_MALLOC 1
-#define ENABLE_NETSCAPE_PLUGIN_API 0
-#endif
-
-#if PLATFORM(BREWMP)
-#define USE_SYSTEM_MALLOC 1
-#endif
 
 #if !defined(HAVE_ACCESSIBILITY)
 #if PLATFORM(IPHONE) || PLATFORM(MAC) || PLATFORM(WIN) || PLATFORM(CHROMIUM)
@@ -740,9 +649,6 @@
 
 #endif
 
-#if PLATFORM(IPHONE)
-#define HAVE_MADV_FREE 1
-#endif
 
 #elif OS(WINDOWS)
 
@@ -1098,7 +1004,7 @@ on MinGW. See https://bugs.webkit.org/show_bug.cgi?id=29268 */
 #define WARN_UNUSED_RETURN
 #endif
 
-#if !ENABLE(NETSCAPE_PLUGIN_API) || (ENABLE(NETSCAPE_PLUGIN_API) && ((OS(UNIX) && (PLATFORM(QT) || PLATFORM(WX))) || PLATFORM(GTK)))
+#if !ENABLE(NETSCAPE_PLUGIN_API) || (ENABLE(NETSCAPE_PLUGIN_API) && ((OS(UNIX) && (PLATFORM(QT) || PLATFORM(WX))) ))
 #define ENABLE_PLUGIN_PACKAGE_SIMPLE_HASH 1
 #endif
 

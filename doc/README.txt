@@ -23,7 +23,6 @@ Hacking Roadmaps :
 Porting :
 
 - Config
-	Base/config.h
 	JavaScriptCore/config.h
 
 - Platform 
