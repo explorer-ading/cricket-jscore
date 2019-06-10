@@ -13,5 +13,5 @@ for file in ./sunspider/*
 do
 	#echo "Running $file , \t\t\t\t\t\ttime(ms):"  `./jsc $file`
 	#printf 'Running %s %s%*s%s\n' "$file" "$GREEN" $col `./jsc $file` "$NORMAL"
-	printf 'Time(ms): %s%*s%s - After running %s \n' "$GREEN" $col `./jsc $file` "$NORMAL"  "$file" 
+	printf 'Time(ms): %s%*s%s - Running %s \n' "$GREEN" $col `./jsc $file` "$NORMAL"  "$file" 
 done

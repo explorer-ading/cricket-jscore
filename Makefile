@@ -30,7 +30,7 @@ JSCLDFLAGS := -rdynamic -lpthread -lm
 
 
 # Close ICU dependens
-USE_ICU := no
+USE_ICU := yes
 
 ifeq ($(USE_ICU), no)
 DEFINES += -DNICU
