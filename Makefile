@@ -42,7 +42,10 @@ INCDIR :=  \
 	-I$(OWBTRUNK) \
 	-I$(OWBTRUNK)/Base \
 	-I$(OWBTRUNK)/Base/wtf \
-	-I$(OWBGENERATEDLINK)/BAL/wtf -I$(OWBGENERATEDLINK)/BAL/wtf/text -I$(OWBGENERATEDLINK)/BAL/wtf/unicode -I$(OWBGENERATEDLINK)/BAL \
+	-I$(OWBGENERATEDLINK)/BAL/wtf \
+	-I$(OWBGENERATEDLINK)/BAL/wtf/text \
+	-I$(OWBGENERATEDLINK)/BAL/wtf/unicode \
+	-I$(OWBGENERATEDLINK)/BAL \
 	-I$(OWBTRUNK)/JavaScriptCore \
 	-I$(OWBTRUNK)/JavaScriptCore/assembler \
 	-I$(OWBTRUNK)/JavaScriptCore/API \

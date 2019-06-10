@@ -1,4 +1,10 @@
-# cricket-jscore
+# cricket-jscore ![Language](https://img.shields.io/badge/language-Python%20%2F%20C++%2011-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
+
+* An old JavaScript Engine forked by owb-browser 
+* On research purpose 
+
+## Architecture
+...to be continued...
 
 ## Dependencies
 
@@ -7,8 +13,10 @@
 * [icu-project](http://icu-project.org/)
 
 ## Building (verified on ubuntu1404)
-`make distclean`
-`make`
+```{bash}
+make distclean
+make
+```
 
 ## Running test
 ![cricket-jscore](./doc/cricket-jscore.png)
