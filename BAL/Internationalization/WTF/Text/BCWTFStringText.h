@@ -35,12 +35,6 @@
 typedef const struct __CFString * CFStringRef;
 #endif
 
-#if PLATFORM(QT)
-QT_BEGIN_NAMESPACE
-class QString;
-QT_END_NAMESPACE
-#include <QDataStream>
-#endif
 
 #if PLATFORM(WX)
 class wxString;
@@ -264,11 +258,6 @@ public:
     operator NSString*() const { if (!m_impl) return @""; return *m_impl; }
 #endif
 
-#if PLATFORM(QT)
-    String(const QString&);
-    String(const QStringRef&);
-    operator QString() const;
-#endif
 
 #if PLATFORM(WX)
     String(const wxString&);
@@ -300,10 +289,6 @@ private:
     RefPtr<StringImpl> m_impl;
 };
 
-#if PLATFORM(QT)
-QDataStream& operator<<(QDataStream& stream, const String& str);
-QDataStream& operator>>(QDataStream& stream, String& str);
-#endif
 
 String operator+(const String&, const String&);
 String operator+(const String&, const char*);

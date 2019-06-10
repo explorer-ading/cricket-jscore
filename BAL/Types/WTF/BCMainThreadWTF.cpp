@@ -34,9 +34,6 @@
 #include "StdLibExtras.h"
 #include "Threading.h"
 
-#if PLATFORM(CHROMIUM)
-#error Chromium uses a different main thread implementation
-#endif
 
 namespace WTF {
 
@@ -70,9 +67,7 @@ public:
 typedef Deque<FunctionWithContext> FunctionQueue;
 
 static bool callbacksPaused; // This global variable is only accessed from main thread.
-#if !PLATFORM(MAC) && !PLATFORM(QT)
 static ThreadIdentifier mainThreadIdentifier;
-#endif
 
 static Mutex& mainThreadFunctionQueueMutex()
 {
@@ -87,7 +82,6 @@ static FunctionQueue& functionQueue()
 }
 
 
-#if !PLATFORM(MAC)
 
 void initializeMainThread()
 {
@@ -96,40 +90,12 @@ void initializeMainThread()
         return;
     initializedMainThread = true;
 
-#if !PLATFORM(QT)
     mainThreadIdentifier = currentThread();
-#endif
 
     mainThreadFunctionQueueMutex();
     initializeMainThreadPlatform();
 }
 
-#else
-
-static pthread_once_t initializeMainThreadKeyOnce = PTHREAD_ONCE_INIT;
-
-static void initializeMainThreadOnce()
-{
-    mainThreadFunctionQueueMutex();
-    initializeMainThreadPlatform();
-}
-
-void initializeMainThread()
-{
-    pthread_once(&initializeMainThreadKeyOnce, initializeMainThreadOnce);
-}
-
-static void initializeMainThreadToProcessMainThreadOnce()
-{
-    mainThreadFunctionQueueMutex();
-    initializeMainThreadToProcessMainThreadPlatform();
-}
-
-void initializeMainThreadToProcessMainThread()
-{
-    pthread_once(&initializeMainThreadKeyOnce, initializeMainThreadToProcessMainThreadOnce);
-}
-#endif
 
 // 0.1 sec delays in UI is approximate threshold when they become noticeable. Have a limit that's half of that.
 static const double maxRunLoopSuspensionTime = 0.05;
@@ -230,11 +196,9 @@ void setMainThreadCallbacksPaused(bool paused)
         scheduleDispatchFunctionsOnMainThread();
 }
 
-#if !PLATFORM(MAC) && !PLATFORM(QT)
 bool isMainThread()
 {
     return currentThread() == mainThreadIdentifier;
 }
-#endif
 
 } // namespace WTF

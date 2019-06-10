@@ -37,9 +37,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#if !OS(WINDOWS)
 #include <unistd.h>
-#endif
 
 #if HAVE(READLINE)
 #include <readline/history.h>
@@ -54,16 +52,6 @@
 #include <signal.h>
 #endif
 
-#if COMPILER(MSVC) && !OS(WINCE)
-#include <crtdbg.h>
-#include <mmsystem.h>
-#include <windows.h>
-#endif
-
-#if PLATFORM(QT)
-#include <QCoreApplication>
-#include <QDateTime>
-#endif
 
 using namespace JSC;
 using namespace WTF;
@@ -299,11 +287,6 @@ JSValue JSC_HOST_CALL functionQuit(ExecState* exec, JSObject*, JSValue, const Ar
 
     cleanupGlobalData(&exec->globalData());
     exit(EXIT_SUCCESS);
-
-#if COMPILER(MSVC) && OS(WINCE)
-    // Without this, Visual Studio will complain that this method does not return a value.
-    return jsUndefined();
-#endif
 }
 
 // Use SEH for Release builds only to get rid of the crash report dialog
@@ -311,35 +294,13 @@ JSValue JSC_HOST_CALL functionQuit(ExecState* exec, JSObject*, JSValue, const Ar
 // be in a separate main function because the jscmain function requires object
 // unwinding.
 
-#if COMPILER(MSVC) && !defined(_DEBUG)
-#define TRY       __try {
-#define EXCEPT(x) } __except (EXCEPTION_EXECUTE_HANDLER) { x; }
-#else
 #define TRY
 #define EXCEPT(x)
-#endif
 
 int jscmain(int argc, char** argv, JSGlobalData*);
 
 int main(int argc, char** argv)
 {
-#if defined(_DEBUG) && OS(WINDOWS)
-    _CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
-    _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
-    _CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDERR);
-    _CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
-    _CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
-    _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
-#endif
-
-#if COMPILER(MSVC) && !OS(WINCE)
-    timeBeginPeriod(1);
-#endif
-
-#if PLATFORM(QT)
-    QCoreApplication app(argc, argv);
-#endif
-
     // Initialize JSC before getting JSGlobalData.
     JSC::initializeThreading();
 

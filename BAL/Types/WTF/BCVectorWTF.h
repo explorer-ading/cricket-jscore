@@ -29,9 +29,6 @@
 #include <limits>
 #include <utility>
 
-#if PLATFORM(QT)
-#include <QDataStream>
-#endif
 
 namespace WTF {
 
@@ -626,32 +623,6 @@ namespace WTF {
         Buffer m_buffer;
     };
 
-#if PLATFORM(QT)
-    template<typename T>
-    QDataStream& operator<<(QDataStream& stream, const Vector<T>& data)
-    {
-        stream << qint64(data.size());
-        foreach (const T& i, data)
-            stream << i;
-        return stream;
-    }
-
-    template<typename T>
-    QDataStream& operator>>(QDataStream& stream, Vector<T>& data)
-    {
-        data.clear();
-        qint64 count;
-        T item;
-        stream >> count;
-        data.reserveCapacity(count);
-        for (qint64 i = 0; i < count; ++i) {
-            stream >> item;
-            data.append(item);
-        }
-        return stream;
-    }
-#endif
-
     template<typename T, size_t inlineCapacity>
     Vector<T, inlineCapacity>::Vector(const Vector& other)
         : m_size(other.size())
@@ -685,12 +656,6 @@ namespace WTF {
             if (!begin())
                 return *this;
         }
-        
-// Works around an assert in VS2010. See https://connect.microsoft.com/VisualStudio/feedback/details/558044/std-copy-should-not-check-dest-when-first-last
-#if COMPILER(MSVC) && defined(_ITERATOR_DEBUG_LEVEL) && _ITERATOR_DEBUG_LEVEL
-        if (!begin())
-            return *this;
-#endif
 
         std::copy(other.begin(), other.begin() + size(), begin());
         TypeOperations::uninitializedCopy(other.begin() + size(), other.end(), end());
@@ -715,12 +680,6 @@ namespace WTF {
                 return *this;
         }
         
-// Works around an assert in VS2010. See https://connect.microsoft.com/VisualStudio/feedback/details/558044/std-copy-should-not-check-dest-when-first-last
-#if COMPILER(MSVC) && defined(_ITERATOR_DEBUG_LEVEL) && _ITERATOR_DEBUG_LEVEL
-        if (!begin())
-            return *this;
-#endif
-
         std::copy(other.begin(), other.begin() + size(), begin());
         TypeOperations::uninitializedCopy(other.begin() + size(), other.end(), end());
         m_size = other.size();
@@ -951,17 +910,7 @@ namespace WTF {
                 return;
         }
             
-#if COMPILER(MSVC7_OR_LOWER)
-        // FIXME: MSVC7 generates compilation errors when trying to assign
-        // a pointer to a Vector of its base class (i.e. can't downcast). So far
-        // I've been unable to determine any logical reason for this, so I can
-        // only assume it is a bug with the compiler. Casting is a bad solution,
-        // however, because it subverts implicit conversions, so a better 
-        // one is needed. 
-        new (end()) T(static_cast<T>(*ptr));
-#else
         new (end()) T(*ptr);
-#endif
         ++m_size;
     }
 

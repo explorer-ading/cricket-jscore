@@ -463,7 +463,6 @@
 
 /* FIXME: these are all mixes of OS, operating environment and policy choices. */
 /* PLATFORM(CHROMIUM) */
-/* PLATFORM(QT) */
 /* PLATFORM(WX) */
 /* PLATFORM(HAIKU) */
 /* PLATFORM(MAC) */
@@ -521,76 +520,12 @@
 #endif
 
 
-
-#if OS(WINCE) && PLATFORM(QT)
-#include <ce_time.h>
-#endif
-
-#if (PLATFORM(IPHONE) || PLATFORM(MAC) || PLATFORM(WIN) || (PLATFORM(QT) && OS(DARWIN) && !ENABLE(SINGLE_THREADED))) && !defined(ENABLE_JSC_MULTIPLE_THREADS)
+#if (PLATFORM(IPHONE)) && !defined(ENABLE_JSC_MULTIPLE_THREADS)
 #define ENABLE_JSC_MULTIPLE_THREADS 1
 #endif
 
-/* On Windows, use QueryPerformanceCounter by default */
-#if OS(WINDOWS)
-#define WTF_USE_QUERY_PERFORMANCE_COUNTER  1
-#endif
-
-#if OS(WINCE) && !PLATFORM(QT)
-#undef ENABLE_JSC_MULTIPLE_THREADS
-#define ENABLE_JSC_MULTIPLE_THREADS        0
-#define USE_SYSTEM_MALLOC                  0
-#define ENABLE_ICONDATABASE                0
-#define ENABLE_JAVASCRIPT_DEBUGGER         0
-#define ENABLE_FTPDIR                      0
-#define ENABLE_PAN_SCROLLING               0
-#define ENABLE_WML                         1
-#define HAVE_ACCESSIBILITY                 0
-
-#define NOMINMAX       /* Windows min and max conflict with standard macros */
-#define NOSHLWAPI      /* shlwapi.h not available on WinCe */
-
-/* MSDN documentation says these functions are provided with uspce.lib.  But we cannot find this file. */
-#define __usp10__      /* disable "usp10.h" */
-
-#define _INC_ASSERT    /* disable "assert.h" */
-#define assert(x)
-
-/* _countof is only included in CE6; for CE5 we need to define it ourself */
-#ifndef _countof
-#define _countof(x) (sizeof(x) / sizeof((x)[0]))
-#endif
-
-#endif  /* OS(WINCE) && !PLATFORM(QT) */
 
 #define WTF_USE_ICU_UNICODE 0
-
-#if PLATFORM(MAC) && !PLATFORM(IPHONE)
-#define WTF_PLATFORM_CF 1
-#define WTF_USE_PTHREADS 1
-#define HAVE_PTHREAD_RWLOCK 1
-#if !defined(BUILDING_ON_LEOPARD) && !defined(BUILDING_ON_TIGER) && CPU(X86_64)
-#define WTF_USE_PLUGIN_HOST_PROCESS 1
-#endif
-#if !defined(ENABLE_JAVA_BRIDGE)
-#define ENABLE_JAVA_BRIDGE 1
-#endif
-#if !defined(ENABLE_DASHBOARD_SUPPORT)
-#define ENABLE_DASHBOARD_SUPPORT 1
-#endif
-#define HAVE_READLINE 1
-#define HAVE_RUNLOOP_TIMER 1
-#endif /* PLATFORM(MAC) && !PLATFORM(IPHONE) */
-
-#if PLATFORM(MAC)
-#define WTF_USE_CARBON_SECURE_INPUT_MODE 1
-#endif
-
-#if PLATFORM(CHROMIUM) && OS(DARWIN)
-#define WTF_PLATFORM_CF 1
-#define WTF_USE_PTHREADS 1
-#define HAVE_PTHREAD_RWLOCK 1
-#define WTF_USE_CARBON_SECURE_INPUT_MODE 1
-#endif
 
 
 #if PLATFORM(WX)
@@ -640,12 +575,9 @@
 #if !defined(BUILDING_ON_TIGER) && !defined(BUILDING_ON_LEOPARD)
 
 #define HAVE_DISPATCH_H 1
-
-#if !PLATFORM(IPHONE) && !PLATFORM(QT)
 #define HAVE_MADV_FREE_REUSE 1
 #define HAVE_MADV_FREE 1
 #define HAVE_PTHREAD_SETNAME_NP 1
-#endif
 
 #endif
 
@@ -720,11 +652,6 @@
 #endif
 
 /* ENABLE macro defaults */
-
-#if PLATFORM(QT)
-// We must not customize the global operator new and delete for the Qt port.
-#define ENABLE_GLOBAL_FASTMALLOC_NEW 0
-#endif
 
 /* fastMalloc match validation allows for runtime verification that
    new is matched by delete, fastMalloc is matched by fastFree, etc. */
@@ -864,33 +791,6 @@ on MinGW. See https://bugs.webkit.org/show_bug.cgi?id=29268 */
     #define ENABLE_JIT 1
 #endif
 
-#if PLATFORM(QT) || PLATFORM(WX)
-#if CPU(X86_64) && OS(DARWIN)
-    #define ENABLE_JIT 1
-#elif CPU(X86) && OS(DARWIN)
-    #define ENABLE_JIT 1
-    #define WTF_USE_JIT_STUB_ARGUMENT_VA_LIST 1
-#elif CPU(X86) && OS(WINDOWS) && COMPILER(MINGW) && GCC_VERSION >= 40100
-    #define ENABLE_JIT 1
-    #define WTF_USE_JIT_STUB_ARGUMENT_VA_LIST 1
-#elif CPU(X86) && OS(WINDOWS) && COMPILER(MSVC)
-    #define ENABLE_JIT 1
-    #define WTF_USE_JIT_STUB_ARGUMENT_REGISTER 1
-#elif CPU(X86) && OS(LINUX) && GCC_VERSION >= 40100
-    #define ENABLE_JIT 1
-    #define WTF_USE_JIT_STUB_ARGUMENT_VA_LIST 1
-#elif CPU(X86_64) && OS(LINUX) && GCC_VERSION >= 40100
-    #define ENABLE_JIT 1
-#elif CPU(ARM_TRADITIONAL) && OS(LINUX)
-    #define ENABLE_JIT 1
-#elif CPU(ARM_TRADITIONAL) && OS(SYMBIAN) && COMPILER(RVCT)
-    #define ENABLE_JIT 1
-#elif CPU(MIPS) && OS(LINUX)
-    #define ENABLE_JIT 1
-    #define WTF_USE_JIT_STUB_ARGUMENT_VA_LIST 0
-#endif
-#endif /* PLATFORM(QT) */
-
 #endif /* !defined(ENABLE_JIT) */
 
 /* CPU architecture specific optimizations */
@@ -961,16 +861,7 @@ on MinGW. See https://bugs.webkit.org/show_bug.cgi?id=29268 */
 #define ENABLE_PAN_SCROLLING 1
 #endif
 
-/* Use the QXmlStreamReader implementation for XMLTokenizer */
-/* Use the QXmlQuery implementation for XSLTProcessor */
-#if PLATFORM(QT)
-#define WTF_USE_QXMLSTREAM 1
-#define WTF_USE_QXMLQUERY 1
-#endif
-
-#if !PLATFORM(QT)
 #define WTF_USE_FONT_FAST_PATH 1
-#endif
 
 /* Accelerated compositing */
 #if PLATFORM(MAC)
@@ -1004,7 +895,7 @@ on MinGW. See https://bugs.webkit.org/show_bug.cgi?id=29268 */
 #define WARN_UNUSED_RETURN
 #endif
 
-#if !ENABLE(NETSCAPE_PLUGIN_API) || (ENABLE(NETSCAPE_PLUGIN_API) && ((OS(UNIX) && (PLATFORM(QT) || PLATFORM(WX))) ))
+#if !ENABLE(NETSCAPE_PLUGIN_API) || (ENABLE(NETSCAPE_PLUGIN_API) && (OS(UNIX)  ))
 #define ENABLE_PLUGIN_PACKAGE_SIMPLE_HASH 1
 #endif
 

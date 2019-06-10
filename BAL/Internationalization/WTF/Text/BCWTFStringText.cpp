@@ -288,20 +288,7 @@ const UChar* String::charactersWithNullTermination()
 
 String String::format(const char *format, ...)
 {
-#if PLATFORM(QT)
-    // Use QString::vsprintf to avoid the locale dependent formatting of vsnprintf.
-    // https://bugs.webkit.org/show_bug.cgi?id=18994
-    va_list args;
-    va_start(args, format);
-
-    QString buffer;
-    buffer.vsprintf(format, args);
-
-    va_end(args);
-
-    return buffer;
-
-#elif OS(WINCE)
+#if OS(WINCE)
     va_list args;
     va_start(args, format);
 
@@ -393,20 +380,12 @@ String String::number(unsigned long n)
 
 String String::number(long long n)
 {
-#if OS(WINDOWS) && !PLATFORM(QT)
-    return String::format("%I64i", n);
-#else
     return String::format("%lli", n);
-#endif
 }
 
 String String::number(unsigned long long n)
 {
-#if OS(WINDOWS) && !PLATFORM(QT)
-    return String::format("%I64u", n);
-#else
     return String::format("%llu", n);
-#endif
 }
     
 String String::number(double n)

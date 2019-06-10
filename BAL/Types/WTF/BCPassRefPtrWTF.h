@@ -37,13 +37,7 @@ namespace WTF {
     // [Qt]r57240 broke Qt build (might be a gcc bug)
     // FIXME! See: https://bugs.webkit.org/show_bug.cgi?id=37253
     template<typename T>
-#if !COMPILER(WINSCW)
-#if !PLATFORM(QT)
     ALWAYS_INLINE
-#else
-    inline
-#endif
-#endif
     void refIfNotNull(T* ptr)
     {
         if (UNLIKELY(ptr != 0))
@@ -53,13 +47,7 @@ namespace WTF {
     // [Qt]r57240 broke Qt build (might be a gcc bug)
     // FIXME! See: https://bugs.webkit.org/show_bug.cgi?id=37253
     template<typename T> 
-#if !COMPILER(WINSCW)
-#if !PLATFORM(QT)
     ALWAYS_INLINE
-#else
-    inline
-#endif
-#endif
     void derefIfNotNull(T* ptr)
     {
         if (UNLIKELY(ptr != 0))

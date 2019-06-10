@@ -105,10 +105,6 @@ public:
     AtomicString(NSString* s) : m_string(add(String(s).impl())) { }
     operator NSString*() const { return m_string; }
 #endif
-#if PLATFORM(QT)
-    AtomicString(const QString& s) : m_string(add(String(s).impl())) { }
-    operator QString() const { return m_string; }
-#endif
 
 private:
     String m_string;
