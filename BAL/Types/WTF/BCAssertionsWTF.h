@@ -50,11 +50,6 @@
 #include <inttypes.h>
 #endif
 
-#if OS(SYMBIAN)
-#include <e32def.h>
-#include <e32debug.h>
-#endif
-
 #ifdef NDEBUG
 /* Disable ASSERT* macros in release mode. */
 #define ASSERTIONS_DISABLED_DEFAULT 1
@@ -158,17 +153,10 @@ void WTFLogVerbose(const char* file, int line, const char* function, WTFLogChann
    Signals are ignored by the crash reporter on OS X so we must do better.
 */
 #ifndef CRASH
-#if OS(SYMBIAN)
-#define CRASH() do { \
-    __DEBUGGER(); \
-    User::Panic(_L("Webkit CRASH"),0); \
-    } while(false)
-#else
 #define CRASH() do { \
     *(int *)(uintptr_t)0xbbadbeef = 0; \
     ((void(*)())0)(); /* More reliable, but doesn't say BBADBEEF */ \
 } while(false)
-#endif
 #endif
 
 /* ASSERT, ASSERT_NOT_REACHED, ASSERT_UNUSED
@@ -185,7 +173,7 @@ void WTFLogVerbose(const char* file, int line, const char* function, WTFLogChann
 #undef ERROR
 #endif
 
-#if OS(WINDOWS) || OS(SYMBIAN)
+#if OS(WINDOWS)
 /* FIXME: Change to use something other than ASSERT to avoid this conflict with the underlying platform */
 #undef ASSERT
 #endif

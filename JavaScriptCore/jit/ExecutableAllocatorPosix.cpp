@@ -27,7 +27,7 @@
 
 #include "ExecutableAllocator.h"
 
-#if ENABLE(ASSEMBLER) && OS(UNIX) && !OS(SYMBIAN)
+#if ENABLE(ASSEMBLER) && OS(UNIX) 
 
 #include <sys/mman.h>
 #include <unistd.h>

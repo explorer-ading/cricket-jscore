@@ -386,10 +386,6 @@
 #define WTF_OS_FREEBSD 1
 #endif
 
-/* OS(HAIKU) - Haiku */
-#ifdef __HAIKU__
-#define WTF_OS_HAIKU 1
-#endif
 
 /* OS(LINUX) - Linux */
 #ifdef __linux__
@@ -426,23 +422,16 @@
 #define WTF_OS_WINDOWS 1
 #endif
 
-/* OS(SYMBIAN) - Symbian */
-#if defined (__SYMBIAN32__)
-#define WTF_OS_SYMBIAN 1
-#endif
-
 /* OS(UNIX) - Any Unix-like system */
 #if   OS(AIX)              \
     || OS(ANDROID)          \
     || OS(DARWIN)           \
     || OS(FREEBSD)          \
-    || OS(HAIKU)            \
     || OS(LINUX)            \
     || OS(NETBSD)           \
     || OS(OPENBSD)          \
     || OS(QNX)              \
     || OS(SOLARIS)          \
-    || OS(SYMBIAN)          \
     || defined(unix)        \
     || defined(__unix)      \
     || defined(__unix__)
@@ -454,7 +443,6 @@
 /* FIXME: these are all mixes of OS, operating environment and policy choices. */
 /* PLATFORM(CHROMIUM) */
 /* PLATFORM(WX) */
-/* PLATFORM(HAIKU) */
 /* PLATFORM(MAC) */
 /* PLATFORM(WIN) */
 #if defined(BUILDING_CHROMIUM__)
@@ -538,12 +526,12 @@
 #endif
 #endif /* !defined(HAVE_ACCESSIBILITY) */
 
-#if OS(UNIX) && !OS(SYMBIAN)
+#if OS(UNIX) 
 #define HAVE_SIGNAL_H 1
 #endif
 
 #if !OS(WINDOWS) && !OS(SOLARIS) && !OS(QNX) \
-    && !OS(SYMBIAN) && !OS(HAIKU) && !OS(RVCT) \
+    && !OS(RVCT) \
     && !OS(ANDROID) && !PLATFORM(BREWMP) 
 #define HAVE_TM_GMTOFF 1
 #define HAVE_TM_ZONE 1
@@ -581,28 +569,13 @@
 #endif
 #define HAVE_VIRTUALALLOC 1
 
-#elif OS(SYMBIAN)
-
-#define HAVE_ERRNO_H 1
-#define HAVE_MMAP 0
-#define HAVE_SBRK 1
-
-#define HAVE_SYS_TIME_H 1
-#define HAVE_STRINGS_H 1
-
-#if !COMPILER(RVCT)
-#define HAVE_SYS_PARAM_H 1
-#endif
-
 #else
 
 /* FIXME: is this actually used or do other platforms generate their own config.h? */
 
 #define HAVE_ERRNO_H 1
 /* As long as Haiku doesn't have a complete support of locale this will be disabled. */
-#if !OS(HAIKU)
 #define HAVE_LANGINFO_H 1
-#endif
 #define HAVE_MMAP 1
 #define HAVE_SBRK 1
 #define HAVE_STRINGS_H 1

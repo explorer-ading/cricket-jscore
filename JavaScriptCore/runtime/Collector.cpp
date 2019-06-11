@@ -58,16 +58,10 @@
 #include <windows.h>
 #include <malloc.h>
 
-#elif OS(HAIKU)
-
-#include <OS.h>
-
 #elif OS(UNIX)
 
 #include <stdlib.h>
-#if !OS(HAIKU)
 #include <sys/mman.h>
-#endif
 #include <unistd.h>
 
 #if OS(SOLARIS)
@@ -228,9 +222,6 @@ Heap::Heap(JSGlobalData* globalData)
     , m_registeredThreads(0)
     , m_currentThreadRegistrar(0)
 #endif
-#if OS(SYMBIAN)
-    , m_blockallocator(JSCCOLLECTOR_VIRTUALMEM_RESERVATION, BLOCK_SIZE)
-#endif
     , m_globalData(globalData)
 {
     ASSERT(globalData);
@@ -276,9 +267,6 @@ void Heap::destroy()
         t = next;
     }
 #endif
-#if OS(SYMBIAN)
-    m_blockallocator.destroy();
-#endif
     m_globalData = 0;
 }
 
@@ -287,10 +275,6 @@ NEVER_INLINE CollectorBlock* Heap::allocateBlock()
 #if OS(DARWIN)
     vm_address_t address = 0;
     vm_map(current_task(), &address, BLOCK_SIZE, BLOCK_OFFSET_MASK, VM_FLAGS_ANYWHERE | VM_TAG_FOR_COLLECTOR_MEMORY, MEMORY_OBJECT_NULL, 0, FALSE, VM_PROT_DEFAULT, VM_PROT_DEFAULT, VM_INHERIT_DEFAULT);
-#elif OS(SYMBIAN)
-    void* address = m_blockallocator.alloc();  
-    if (!address)
-        CRASH();
 #elif OS(WINCE)
     void* address = VirtualAlloc(NULL, BLOCK_SIZE, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 #elif OS(WINDOWS)
@@ -380,8 +364,6 @@ NEVER_INLINE void Heap::freeBlockPtr(CollectorBlock* block)
 {
 #if OS(DARWIN)    
     vm_deallocate(current_task(), reinterpret_cast<vm_address_t>(block), BLOCK_SIZE);
-#elif OS(SYMBIAN)
-    m_blockallocator.free(reinterpret_cast<void*>(block));
 #elif OS(WINCE)
     VirtualFree(block, 0, MEM_RELEASE);
 #elif OS(WINDOWS)
@@ -663,12 +645,6 @@ static inline void* currentThreadStackBase()
     stack_t stack;
     pthread_stackseg_np(thread, &stack);
     return stack.ss_sp;
-#elif OS(SYMBIAN)
-    TThreadStackInfo info;
-    RThread thread;
-    thread.StackInfo(info);
-    return (void*)info.iBase;
-
 #elif OS(UNIX)
     AtomicallyInitializedStatic(Mutex&, mutex = *new Mutex);
     MutexLocker locker(mutex);

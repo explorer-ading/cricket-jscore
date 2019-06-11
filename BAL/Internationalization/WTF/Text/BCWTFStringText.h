@@ -40,9 +40,6 @@ typedef const struct __CFString * CFStringRef;
 class wxString;
 #endif
 
-#if PLATFORM(HAIKU)
-class BString;
-#endif
 
 namespace WTF {
 class CString;
@@ -262,11 +259,6 @@ public:
 #if PLATFORM(WX)
     String(const wxString&);
     operator wxString() const;
-#endif
-
-#if PLATFORM(HAIKU)
-    String(const BString&);
-    operator BString() const;
 #endif
 
     Vector<char> ascii() const;

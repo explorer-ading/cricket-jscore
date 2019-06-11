@@ -26,7 +26,7 @@
 #include "config.h"
 #include "MarkStack.h"
 
-#if OS(UNIX) && !OS(SYMBIAN)
+#if OS(UNIX) 
 
 #include <unistd.h>
 #include <sys/mman.h>

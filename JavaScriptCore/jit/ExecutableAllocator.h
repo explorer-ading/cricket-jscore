@@ -39,10 +39,6 @@
 #include <sys/mman.h>
 #endif
 
-#if OS(SYMBIAN)
-#include <e32std.h>
-#endif
-
 #if CPU(MIPS) && OS(LINUX)
 #include <sys/cachectl.h>
 #endif
@@ -89,9 +85,6 @@ private:
     struct Allocation {
         char* pages;
         size_t size;
-#if OS(SYMBIAN)
-        RChunk* chunk;
-#endif
     };
     typedef Vector<Allocation, 2> AllocationList;
 
@@ -241,11 +234,6 @@ public:
             :
             : "r" (code), "r" (reinterpret_cast<char*>(code) + size)
             : "r0", "r1", "r2");
-    }
-#elif OS(SYMBIAN)
-    static void cacheFlush(void* code, size_t size)
-    {
-        User::IMB_Range(code, static_cast<char*>(code) + size);
     }
 #elif CPU(ARM_TRADITIONAL) && OS(LINUX) && COMPILER(RVCT)
     static __asm void cacheFlush(void* code, size_t size);
