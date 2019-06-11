@@ -38,13 +38,6 @@ typedef struct HPEN__* HPEN;
 typedef struct HRGN__* HRGN;
 #endif
 
-#if PLATFORM(BREWMP)
-// Forward delcarations at this point avoid the need to include BREW includes
-// in WTF headers.
-typedef struct _IFileMgr IFileMgr;
-typedef struct _IFile IFile;
-typedef struct IBitmap IBitmap;
-#endif
 
 namespace WTF {
 
@@ -65,11 +58,6 @@ namespace WTF {
     void deleteOwnedPtr(HRGN);
 #endif
 
-#if PLATFORM(BREWMP)
-    void deleteOwnedPtr(IFileMgr*);
-    void deleteOwnedPtr(IFile*);
-    void deleteOwnedPtr(IBitmap*);
-#endif
 
 } // namespace WTF
 

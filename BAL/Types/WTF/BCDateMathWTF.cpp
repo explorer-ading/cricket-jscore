@@ -379,11 +379,7 @@ int equivalentYearForDST(int year)
 
 static int32_t calculateUTCOffset()
 {
-#if PLATFORM(BREWMP)
-    time_t localTime = static_cast<time_t>(currentTime());
-#else
     time_t localTime = time(0);
-#endif
     tm localt;
     getLocalTime(&localTime, &localt);
 

@@ -204,10 +204,6 @@ TryMallocReturnValue tryFastZeroedMalloc(size_t n)
 
 #if FORCE_SYSTEM_MALLOC
 
-#if PLATFORM(BREWMP)
-#include "brew/SystemMallocBrew.h"
-#endif
-
 #if OS(DARWIN)
 #include <malloc/malloc.h>
 #elif COMPILER(MSVC)
@@ -250,12 +246,6 @@ void* fastMalloc(size_t n)
 #endif
 
     if (!result) {
-#if PLATFORM(BREWMP)
-        // The behavior of malloc(0) is implementation defined.
-        // To make sure that fastMalloc never returns 0, retry with fastMalloc(1).
-        if (!n)
-            return fastMalloc(1);
-#endif
         CRASH();
     }
 
@@ -298,12 +288,6 @@ void* fastCalloc(size_t n_elements, size_t element_size)
 #endif
 
     if (!result) {
-#if PLATFORM(BREWMP)
-        // If either n_elements or element_size is 0, the behavior of calloc is implementation defined.
-        // To make sure that fastCalloc never returns 0, retry with fastCalloc(1, 1).
-        if (!n_elements || !element_size)
-            return fastCalloc(1, 1);
-#endif
         CRASH();
     }
 

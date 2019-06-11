@@ -447,11 +447,6 @@
 /* PLATFORM(WIN) */
 #if defined(BUILDING_CHROMIUM__)
 #define WTF_PLATFORM_CHROMIUM 1
-#if defined(AEE_SIMULATOR)
-#define WTF_PLATFORM_BREWMP_SIMULATOR 1
-#else
-#define WTF_PLATFORM_BREWMP_SIMULATOR 0
-#endif
 #undef WTF_OS_WINDOWS
 #undef WTF_PLATFORM_WIN
 #elif OS(DARWIN) && !OS(MACPORT)
@@ -532,7 +527,7 @@
 
 #if !OS(WINDOWS) && !OS(SOLARIS) && !OS(QNX) \
     && !OS(RVCT) \
-    && !OS(ANDROID) && !PLATFORM(BREWMP) 
+    && !OS(ANDROID)  
 #define HAVE_TM_GMTOFF 1
 #define HAVE_TM_ZONE 1
 #define HAVE_TIMEGM 1
