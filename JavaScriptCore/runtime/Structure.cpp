@@ -162,12 +162,8 @@ inline void Structure::transitionTableAdd(const StructureTransitionTableHash::Ke
         Structure* existingTransition = singleTransition();
         TransitionTable* transitionTable = new TransitionTable;
         setTransitionTable(transitionTable);
-        if (existingTransition) {
-			// FIXME: adingx
-            //transitionTableAdd(std::make_pair(existingTransition->m_nameInPrevious.get(), existingTransition->m_attributesInPrevious), existingTransition, existingTransition->m_specificValueInPrevious);
-			const uint32_t bit_field = existingTransition->m_attributesInPrevious ;
-            transitionTableAdd(std::make_pair(existingTransition->m_nameInPrevious.get(), bit_field), existingTransition, existingTransition->m_specificValueInPrevious);
-		}
+        if (existingTransition)
+            transitionTableAdd(std::make_pair(existingTransition->m_nameInPrevious.get(), existingTransition->m_attributesInPrevious), existingTransition, existingTransition->m_specificValueInPrevious);
     }
     if (!specificValue) {
         TransitionTable::iterator find = transitionTable()->find(key);
@@ -266,10 +262,7 @@ Structure::~Structure()
 {
     if (m_previous) {
         ASSERT(m_nameInPrevious);
-		// FIXME: adingx
-        //m_previous->transitionTableRemove(make_pair(m_nameInPrevious.get(), m_attributesInPrevious), m_specificValueInPrevious);
-		const uint32_t bit_field = m_attributesInPrevious ;
-        m_previous->transitionTableRemove(make_pair(m_nameInPrevious.get(), bit_field), m_specificValueInPrevious);
+        m_previous->transitionTableRemove(make_pair(m_nameInPrevious.get(), m_attributesInPrevious), m_specificValueInPrevious);
 
     }
     ASSERT(!m_enumerationCache.hasDeadObject());

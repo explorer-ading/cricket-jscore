@@ -1871,9 +1871,7 @@ RegisterID* BytecodeGenerator::emitNextPropertyName(RegisterID* dst, RegisterID*
 RegisterID* BytecodeGenerator::emitCatch(RegisterID* targetRegister, Label* start, Label* end)
 {
 #if ENABLE(JIT)
-	// FIXME : adingx
-    //HandlerInfo info = { start->bind(0, 0), end->bind(0, 0), instructions().size(), m_dynamicScopeDepth + m_baseScopeDepth, CodeLocationLabel() };
-    HandlerInfo info = { static_cast<uint32_t>(start->bind(0, 0)), static_cast<uint32_t>(end->bind(0, 0)), static_cast<uint32_t>(instructions().size()), static_cast<uint32_t>(m_dynamicScopeDepth + m_baseScopeDepth), CodeLocationLabel() };
+    HandlerInfo info = { start->bind(0, 0), end->bind(0, 0), instructions().size(), m_dynamicScopeDepth + m_baseScopeDepth, CodeLocationLabel() };
 #else
     HandlerInfo info = { start->bind(0, 0), end->bind(0, 0), instructions().size(), m_dynamicScopeDepth + m_baseScopeDepth };
 #endif
@@ -1925,9 +1923,7 @@ void BytecodeGenerator::emitPushNewScope(RegisterID* dst, const Identifier& prop
 
 void BytecodeGenerator::beginSwitch(RegisterID* scrutineeRegister, SwitchInfo::SwitchType type)
 {
-	// FIXME : adingx
-    //SwitchInfo info = { instructions().size(), type };
-    SwitchInfo info = { (uint32_t) instructions().size(), type };
+    SwitchInfo info = { instructions().size(), type };
     switch (type) {
         case SwitchInfo::SwitchImmediate:
             emitOpcode(op_switch_imm);

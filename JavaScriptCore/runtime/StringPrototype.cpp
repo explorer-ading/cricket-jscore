@@ -442,10 +442,7 @@ JSValue JSC_HOST_CALL stringProtoFuncReplace(ExecState* exec, JSObject*, JSValue
     }
     
     size_t matchEnd = matchPos + matchLen;
-
-	// FIXME: adingx
-    //int ovector[2] = { matchPos, matchEnd };
-    int ovector[2] = {static_cast<int>( matchPos), static_cast<int>( matchEnd) };
+    int ovector[2] = { matchPos, matchEnd };
     return jsString(exec, source.substr(0, matchPos), substituteBackreferences(replacementString, source, ovector, 0), source.substr(matchEnd));
 }
 
@@ -550,6 +547,11 @@ JSValue JSC_HOST_CALL stringProtoFuncLastIndexOf(ExecState* exec, JSObject*, JSV
         dpos = 0;
     else if (!(dpos <= len)) // true for NaN
         dpos = len;
+#if OS(SYMBIAN)
+    // Work around for broken NaN compare operator
+    else if (isnan(dpos))
+        dpos = len;
+#endif
 
     unsigned result = s.rfind(u2, static_cast<unsigned>(dpos));
     if (result == UString::NotFound)

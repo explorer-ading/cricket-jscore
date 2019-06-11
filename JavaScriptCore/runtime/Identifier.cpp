@@ -177,10 +177,7 @@ PassRefPtr<UString::Rep> Identifier::add(JSGlobalData* globalData, const UChar* 
     }
     if (!length)
         return UString::Rep::empty();
-
-	// FIXME: adingx 
-    //UCharBuffer buf = {s, length}; 
-    UCharBuffer buf = {s, static_cast<unsigned int>( length ) }; 
+    UCharBuffer buf = {s, length}; 
     pair<HashSet<UString::Rep*>::iterator, bool> addResult = globalData->identifierTable->add<UCharBuffer, IdentifierUCharBufferTranslator>(buf);
 
     // If the string is newly-translated, then we need to adopt it.

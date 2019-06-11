@@ -626,9 +626,7 @@ const char* compileRegex(const UString& patternString, RegexPattern& pattern)
 
     constructor.setupOffsets();
 
-	// FIXME: adingx
-    //return false;
-	return 0;
+    return false;
 };
 
 

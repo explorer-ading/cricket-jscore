@@ -257,20 +257,19 @@ namespace WTF {
         const_iterator m_iterator;
     };
 
-	using std::swap;
+    using std::swap;
 
 #if !COMPILER(MSVC)
     // Visual C++ has a swap for pairs defined.
 
-	// FIXME: adingx modified function name (swap -> swap2)
-
     // swap pairs by component, in case of pair members that specialize swap
-    template<typename T, typename U> inline void swap2(pair<T, U>& a, pair<T, U>& b)
+    template<typename T, typename U> inline void swap(pair<T, U>& a, pair<T, U>& b)
     {
-		swap(a.first, b.first);
-		swap(a.second, b.second);
+        swap(a.first, b.first);
+        swap(a.second, b.second);
     }
 #endif
+
     template<typename T, bool useSwap> struct Mover;
     template<typename T> struct Mover<T, true> { static void move(T& from, T& to) { swap(from, to); } };
     template<typename T> struct Mover<T, false> { static void move(T& from, T& to) { to = from; } };
