@@ -25,5 +25,7 @@ make
 * [mozjs](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey) - Mozilla SpiderMonkey
 * [v8](https://v8.dev/) - Google V8 
 
+## Lua 
+* [lua](https://www.lua.org/start.html)
 
 ## MIT License
