@@ -1,8 +1,8 @@
 
 CC := g++
 LD := g++
-CPPFLAGS := -g -O2 -D_REENTRANT -I../doc/include/ -Wno-format
-LDFLAGS := -rdynamic -lpthread -lm -L../doc/lib/ -licudata -licui18n -licuio -licule -liculx -licutu -licuuc
+CPPFLAGS := -g -O2 -D_REENTRANT -I../include/ -Wno-format
+LDFLAGS := -rdynamic -lpthread -lm -L../lib/ -licudata -licui18n -licuio -licule -liculx -licutu -licuuc
 
 
 .PHONY: test props ustring clean run-test

@@ -3,8 +3,8 @@ TARGET := jsc
 CX := c++
 LD := c++
 
-USERDIR := doc/include
-USERLIBDIR := doc/lib
+USERDIR := 3rdparty/include
+USERLIBDIR := 3rdparty/lib
 
 OUTDIR := out
 JSCDIR := JavaScriptCore
@@ -255,7 +255,7 @@ OBJS := $(patsubst %.cpp, %.o, $(SRC))
 	#+++++ walk around solution start +++++
 	# bison3 is incompatible with bison2 ( http://savannah.gnu.org/forum/forum.php?forum_id=7663 )
 	#bison -d -p jscyy JavaScriptCore/parser/Grammar.y -o $(OUTDIR)/JavaScriptCore/Grammar.tab.c && mv -f $(OUTDIR)/JavaScriptCore/Grammar.tab.c $(OUTDIR)/JavaScriptCore/Grammar.cpp && mv -f $(OUTDIR)/JavaScriptCore/Grammar.tab.h $(OUTDIR)/JavaScriptCore/Grammar.h
-	cp -fv doc/bison_grammar_src/* $(OUTDIR)/JavaScriptCore/ 
+	cp -fv JavaScriptCore/bison_grammar_src/* $(OUTDIR)/JavaScriptCore/ 
 	#+++++ walk around solution end +++++
 	perl JavaScriptCore/pcre/dftables $(OUTDIR)/JavaScriptCore/chartables.c
 	python JavaScriptCore/create_regex_tables > $(OUTDIR)/JavaScriptCore/RegExpJitTables.h
