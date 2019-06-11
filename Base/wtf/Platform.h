@@ -412,10 +412,6 @@
 #define WTF_OS_SOLARIS 1
 #endif
 
-/* OS(WINCE) - Windows CE; note that for this platform OS(WINDOWS) is also defined */
-#if defined(_WIN32_WCE)
-#define WTF_OS_WINCE 1
-#endif
 
 /* OS(WINDOWS) - Any version of Windows */
 #if defined(WIN32) || defined(_WIN32)
@@ -557,11 +553,7 @@
 
 #elif OS(WINDOWS)
 
-#if OS(WINCE)
-#define HAVE_ERRNO_H 0
-#else
 #define HAVE_SYS_TIMEB_H 1
-#endif
 #define HAVE_VIRTUALALLOC 1
 
 #else

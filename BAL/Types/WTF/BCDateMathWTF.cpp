@@ -83,14 +83,8 @@
 #include <stdint.h>
 #include <time.h>
 
-
 #if HAVE(ERRNO_H)
 #include <errno.h>
-#endif
-
-#if OS(WINCE)
-extern "C" size_t strftime(char * const s, const size_t maxsize, const char * const format, const struct tm * const t);
-extern "C" struct tm * localtime(const time_t *timer);
 #endif
 
 #if HAVE(SYS_TIME_H)

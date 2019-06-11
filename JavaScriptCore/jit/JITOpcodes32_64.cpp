@@ -355,34 +355,6 @@ void JIT::privateCompileCTIMachineTrampolines(RefPtr<ExecutablePool>* executable
     // r2 - callee
     // stack: this(JSValue) and a pointer to ArgList
 
-#if OS(WINCE)
-    // Setup arg4:
-    push(stackPointerRegister);
-
-    // Setup arg3:
-    // regT1 currently points to the first argument, regT1-sizeof(Register) points to 'this'
-    load32(Address(regT1, -(int32_t)sizeof(void*) * 2), ARMRegisters::r3);
-    push(ARMRegisters::r3);
-    load32(Address(regT1, -(int32_t)sizeof(void*)), regT3);
-    storePtr(regT3, Address(stackPointerRegister));
-
-    // Setup arg2:
-    emitGetFromCallFrameHeaderPtr(RegisterFile::Callee, regT2);
-
-    // Setup arg1:
-    move(callFrameRegister, regT1);
-
-    // Setup arg0:
-    move(stackPointerRegister, regT0);
-
-    loadPtr(Address(regT2, OBJECT_OFFSETOF(JSFunction, m_executable)), regT3);
-    call(Address(regT3, OBJECT_OFFSETOF(NativeExecutable, m_function)));
-
-    load32(Address(stackPointerRegister, 0), regT0);
-    load32(Address(stackPointerRegister, 4), regT1);
-
-    addPtr(Imm32(sizeof(ArgList) + 8), stackPointerRegister);
-#else // OS(WINCE)
     move(stackPointerRegister, regT3);
     subPtr(Imm32(8), stackPointerRegister);
     move(stackPointerRegister, regT0);
@@ -412,7 +384,6 @@ void JIT::privateCompileCTIMachineTrampolines(RefPtr<ExecutablePool>* executable
     load32(Address(stackPointerRegister, 20), regT1);
 
     addPtr(Imm32(sizeof(ArgList) + 16 + 8), stackPointerRegister);
-#endif // OS(WINCE)
 
 #endif
 
@@ -636,33 +607,6 @@ JIT::CodePtr JIT::privateCompileCTINativeCall(PassRefPtr<ExecutablePool> executa
     // r2 - callee
     // stack: this(JSValue) and a pointer to ArgList
 
-#if OS(WINCE)
-    // Setup arg4:
-    push(stackPointerRegister);
-
-    // Setup arg3:
-    // regT1 currently points to the first argument, regT1-sizeof(Register) points to 'this'
-    load32(Address(regT1, -(int32_t)sizeof(void*) * 2), ARMRegisters::r3);
-    push(ARMRegisters::r3);
-    load32(Address(regT1, -(int32_t)sizeof(void*)), regT3);
-    storePtr(regT3, Address(stackPointerRegister));
-
-    // Setup arg2:
-    emitGetFromCallFrameHeaderPtr(RegisterFile::Callee, regT2);
-
-    // Setup arg1:
-    move(callFrameRegister, regT1);
-
-    // Setup arg0:
-    move(stackPointerRegister, regT0);
-
-    Call nativeCall = call();
-
-    load32(Address(stackPointerRegister, 0), regT0);
-    load32(Address(stackPointerRegister, 4), regT1);
-
-    addPtr(Imm32(sizeof(ArgList) + 8), stackPointerRegister);
-#else // OS(WINCE)
     move(stackPointerRegister, regT3);
     subPtr(Imm32(8), stackPointerRegister);
     move(stackPointerRegister, regT0);
@@ -691,7 +635,6 @@ JIT::CodePtr JIT::privateCompileCTINativeCall(PassRefPtr<ExecutablePool> executa
     load32(Address(stackPointerRegister, 20), regT1);
 
     addPtr(Imm32(sizeof(ArgList) + 16 + 8), stackPointerRegister);
-#endif // OS(WINCE)
 
 #endif
 

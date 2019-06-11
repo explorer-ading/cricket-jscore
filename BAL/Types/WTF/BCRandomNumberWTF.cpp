@@ -34,12 +34,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#if OS(WINCE)
-extern "C" {
-#include "wince/mt19937ar.c"
-}
-#endif
-
 
 namespace WTF {
 
@@ -81,8 +75,6 @@ double randomNumber()
     // Mask off the low 53bits
     fullRandom &= (1LL << 53) - 1;
     return static_cast<double>(fullRandom)/static_cast<double>(1LL << 53);
-#elif OS(WINCE)
-    return genrand_res53();
 #elif OS(WINDOWS)
     uint32_t part1 = rand() & (RAND_MAX - 1);
     uint32_t part2 = rand() & (RAND_MAX - 1);

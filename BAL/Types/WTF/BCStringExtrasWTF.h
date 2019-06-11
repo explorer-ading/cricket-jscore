@@ -46,7 +46,7 @@ inline int snprintf(char* buffer, size_t count, const char* format, ...)
     return result;
 }
 
-#if COMPILER(MSVC7_OR_LOWER) || OS(WINCE)
+#if COMPILER(MSVC7_OR_LOWER) 
 
 inline int vsnprintf(char* buffer, size_t count, const char* format, va_list args)
 {
@@ -55,24 +55,6 @@ inline int vsnprintf(char* buffer, size_t count, const char* format, va_list arg
 
 #endif
 
-#if OS(WINCE)
-
-inline int strnicmp(const char* string1, const char* string2, size_t count)
-{
-    return _strnicmp(string1, string2, count);
-}
-
-inline int stricmp(const char* string1, const char* string2)
-{
-    return _stricmp(string1, string2);
-}
-
-inline char* strdup(const char* strSource)
-{
-    return _strdup(strSource);
-}
-
-#endif
 
 inline int strncasecmp(const char* s1, const char* s2, size_t len)
 {

@@ -275,8 +275,6 @@ NEVER_INLINE CollectorBlock* Heap::allocateBlock()
 #if OS(DARWIN)
     vm_address_t address = 0;
     vm_map(current_task(), &address, BLOCK_SIZE, BLOCK_OFFSET_MASK, VM_FLAGS_ANYWHERE | VM_TAG_FOR_COLLECTOR_MEMORY, MEMORY_OBJECT_NULL, 0, FALSE, VM_PROT_DEFAULT, VM_PROT_DEFAULT, VM_INHERIT_DEFAULT);
-#elif OS(WINCE)
-    void* address = VirtualAlloc(NULL, BLOCK_SIZE, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 #elif OS(WINDOWS)
 #if COMPILER(MINGW) && !COMPILER(MINGW64)
     void* address = __mingw_aligned_malloc(BLOCK_SIZE, BLOCK_SIZE);
@@ -364,8 +362,6 @@ NEVER_INLINE void Heap::freeBlockPtr(CollectorBlock* block)
 {
 #if OS(DARWIN)    
     vm_deallocate(current_task(), reinterpret_cast<vm_address_t>(block), BLOCK_SIZE);
-#elif OS(WINCE)
-    VirtualFree(block, 0, MEM_RELEASE);
 #elif OS(WINDOWS)
 #if COMPILER(MINGW) && !COMPILER(MINGW64)
     __mingw_aligned_free(block);
@@ -523,62 +519,6 @@ void Heap::shrinkBlocks(size_t neededBlocks)
         m_heap.blocks[i]->marked.set(HeapConstants::cellsPerBlock - 1);
 }
 
-#if OS(WINCE)
-JS_EXPORTDATA void* g_stackBase = 0;
-
-inline bool isPageWritable(void* page)
-{
-    MEMORY_BASIC_INFORMATION memoryInformation;
-    DWORD result = VirtualQuery(page, &memoryInformation, sizeof(memoryInformation));
-
-    // return false on error, including ptr outside memory
-    if (result != sizeof(memoryInformation))
-        return false;
-
-    DWORD protect = memoryInformation.Protect & ~(PAGE_GUARD | PAGE_NOCACHE);
-    return protect == PAGE_READWRITE
-        || protect == PAGE_WRITECOPY
-        || protect == PAGE_EXECUTE_READWRITE
-        || protect == PAGE_EXECUTE_WRITECOPY;
-}
-
-static void* getStackBase(void* previousFrame)
-{
-    // find the address of this stack frame by taking the address of a local variable
-    bool isGrowingDownward;
-    void* thisFrame = (void*)(&isGrowingDownward);
-
-    isGrowingDownward = previousFrame < &thisFrame;
-    static DWORD pageSize = 0;
-    if (!pageSize) {
-        SYSTEM_INFO systemInfo;
-        GetSystemInfo(&systemInfo);
-        pageSize = systemInfo.dwPageSize;
-    }
-
-    // scan all of memory starting from this frame, and return the last writeable page found
-    register char* currentPage = (char*)((DWORD)thisFrame & ~(pageSize - 1));
-    if (isGrowingDownward) {
-        while (currentPage > 0) {
-            // check for underflow
-            if (currentPage >= (char*)pageSize)
-                currentPage -= pageSize;
-            else
-                currentPage = 0;
-            if (!isPageWritable(currentPage))
-                return currentPage + pageSize;
-        }
-        return 0;
-    } else {
-        while (true) {
-            // guaranteed to complete because isPageWritable returns false at end of memory
-            currentPage += pageSize;
-            if (!isPageWritable(currentPage))
-                return currentPage;
-        }
-    }
-}
-#endif
 
 #if OS(QNX)
 static inline void *currentThreadStackBaseQNX()
@@ -676,15 +616,7 @@ static inline void* currentThreadStackBase()
 #endif
     }
     return static_cast<char*>(stackBase) + stackSize;
-#elif OS(WINCE)
-    AtomicallyInitializedStatic(Mutex&, mutex = *new Mutex);
-    MutexLocker locker(mutex);
-    if (g_stackBase)
-        return g_stackBase;
-    else {
-        int dummy;
-        return getStackBase(&dummy);
-    }
+
 #else
 #error Need a way to get the stack base on this platform
 #endif

@@ -40,9 +40,6 @@
 #endif
 
 #if COMPILER(MSVC)
-#if OS(WINCE)
-#include <stdlib.h>
-#endif
 #include <limits>
 #endif
 

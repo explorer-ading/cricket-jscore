@@ -385,28 +385,6 @@ void JIT::privateCompileCTIMachineTrampolines(RefPtr<ExecutablePool>* executable
 
     // regT1 currently points to the first argument, regT1-sizeof(Register) points to 'this'
 
-#if OS(WINCE)
-    // Setup arg3:
-    loadPtr(Address(regT1, -(int32_t)sizeof(Register)), ARMRegisters::r3);
-
-    // Setup arg2:
-    emitGetFromCallFrameHeaderPtr(RegisterFile::Callee, regT2);
-
-    // Setup arg1:
-    move(callFrameRegister, regT1);
-
-    // Setup arg0:
-    move(stackPointerRegister, regT0);
-    subPtr(Imm32(sizeof(Register)), stackPointerRegister);
-    storePtr(regT0, Address(stackPointerRegister));
-
-    loadPtr(Address(regT2, OBJECT_OFFSETOF(JSFunction, m_executable)), regT3);
-    call(Address(regT3, OBJECT_OFFSETOF(NativeExecutable, m_function)));
-
-    loadPtr(Address(regT0), regT0);
-
-    addPtr(Imm32(sizeof(Register) + sizeof(ArgList)), stackPointerRegister);
-#else // OS(WINCE)
     // Setup arg3:
     loadPtr(Address(regT1, -(int32_t)sizeof(Register)), regT2);
 
@@ -423,7 +401,6 @@ void JIT::privateCompileCTIMachineTrampolines(RefPtr<ExecutablePool>* executable
     call(Address(regT3, OBJECT_OFFSETOF(NativeExecutable, m_function)));
 
     addPtr(Imm32(sizeof(ArgList)), stackPointerRegister);
-#endif // OS(WINCE)
 
 #elif CPU(MIPS)
     emitGetFromCallFrameHeader32(RegisterFile::ArgumentCount, regT0);
