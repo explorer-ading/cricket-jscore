@@ -64,21 +64,10 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
-#if OS(SOLARIS)
-#include <thread.h>
-#else
 #include <pthread.h>
-#endif
 
 #if HAVE(PTHREAD_NP_H)
 #include <pthread_np.h>
-#endif
-
-#if OS(QNX)
-#include <fcntl.h>
-#include <sys/procfs.h>
-#include <stdio.h>
-#include <errno.h>
 #endif
 
 
@@ -520,33 +509,6 @@ void Heap::shrinkBlocks(size_t neededBlocks)
 }
 
 
-#if OS(QNX)
-static inline void *currentThreadStackBaseQNX()
-{
-    static void* stackBase = 0;
-    static size_t stackSize = 0;
-    static pthread_t stackThread;
-    pthread_t thread = pthread_self();
-    if (stackBase == 0 || thread != stackThread) {
-        struct _debug_thread_info threadInfo;
-        memset(&threadInfo, 0, sizeof(threadInfo));
-        threadInfo.tid = pthread_self();
-        int fd = open("/proc/self", O_RDONLY);
-        if (fd == -1) {
-            LOG_ERROR("Unable to open /proc/self (errno: %d)", errno);
-            return 0;
-        }
-        devctl(fd, DCMD_PROC_TIDSTATUS, &threadInfo, sizeof(threadInfo), 0);
-        close(fd);
-        stackBase = reinterpret_cast<void*>(threadInfo.stkbase);
-        stackSize = threadInfo.stksize;
-        ASSERT(stackBase);
-        stackThread = thread;
-    }
-    return static_cast<char*>(stackBase) + stackSize;
-}
-#endif
-
 static inline void* currentThreadStackBase()
 {
 #if OS(DARWIN)
@@ -572,19 +534,6 @@ static inline void* currentThreadStackBase()
 #elif OS(WINDOWS) && CPU(X86_64)
     PNT_TIB64 pTib = reinterpret_cast<PNT_TIB64>(NtCurrentTeb());
     return reinterpret_cast<void*>(pTib->StackBase);
-#elif OS(QNX)
-    AtomicallyInitializedStatic(Mutex&, mutex = *new Mutex);
-    MutexLocker locker(mutex);
-    return currentThreadStackBaseQNX();
-#elif OS(SOLARIS)
-    stack_t s;
-    thr_stksegment(&s);
-    return s.ss_sp;
-#elif OS(OPENBSD)
-    pthread_t thread = pthread_self();
-    stack_t stack;
-    pthread_stackseg_np(thread, &stack);
-    return stack.ss_sp;
 #elif OS(UNIX)
     AtomicallyInitializedStatic(Mutex&, mutex = *new Mutex);
     MutexLocker locker(mutex);

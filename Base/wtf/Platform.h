@@ -381,35 +381,10 @@
 #define WTF_OS_MAC_OS_X 1
 #endif
 
-/* OS(FREEBSD) - FreeBSD */
-#ifdef __FreeBSD__
-#define WTF_OS_FREEBSD 1
-#endif
-
 
 /* OS(LINUX) - Linux */
 #ifdef __linux__
 #define WTF_OS_LINUX 1
-#endif
-
-/* OS(NETBSD) - NetBSD */
-#if defined(__NetBSD__)
-#define WTF_PLATFORM_NETBSD 1
-#endif
-
-/* OS(OPENBSD) - OpenBSD */
-#ifdef __OpenBSD__
-#define WTF_OS_OPENBSD 1
-#endif
-
-/* OS(QNX) - QNX */
-#if defined(__QNXNTO__)
-#define WTF_OS_QNX 1
-#endif
-
-/* OS(SOLARIS) - Solaris */
-#if defined(sun) || defined(__sun)
-#define WTF_OS_SOLARIS 1
 #endif
 
 
@@ -422,12 +397,8 @@
 #if   OS(AIX)              \
     || OS(ANDROID)          \
     || OS(DARWIN)           \
-    || OS(FREEBSD)          \
     || OS(LINUX)            \
     || OS(NETBSD)           \
-    || OS(OPENBSD)          \
-    || OS(QNX)              \
-    || OS(SOLARIS)          \
     || defined(unix)        \
     || defined(__unix)      \
     || defined(__unix__)
@@ -521,7 +492,7 @@
 #define HAVE_SIGNAL_H 1
 #endif
 
-#if !OS(WINDOWS) && !OS(SOLARIS) && !OS(QNX) \
+#if !OS(WINDOWS)  \
     && !OS(RVCT) \
     && !OS(ANDROID)  
 #define HAVE_TM_GMTOFF 1

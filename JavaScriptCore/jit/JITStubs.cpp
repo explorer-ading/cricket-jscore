@@ -91,8 +91,6 @@ namespace JSC {
 #define HIDE_SYMBOL(name) ".lglobl " #name
 #elif   OS(LINUX)               \
      || OS(FREEBSD)             \
-     || OS(OPENBSD)             \
-     || OS(SOLARIS)             \
      || (OS(HPUX) && CPU(IA64)) \
      || OS(NETBSD)
     // ELF platform

@@ -68,7 +68,7 @@ inline int strcasecmp(const char* s1, const char* s2)
 
 #endif
 
-#if OS(WINDOWS) || OS(LINUX) || OS(SOLARIS)
+#if OS(WINDOWS) || OS(LINUX) 
 // FIXME: should check HAVE_STRNSTR
 
 inline char* strnstr(const char* buffer, const char* target, size_t bufferLength)
