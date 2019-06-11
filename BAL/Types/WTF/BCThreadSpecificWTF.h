@@ -49,7 +49,6 @@
 
 namespace WTF {
 
-
 template<typename T> class ThreadSpecific : public Noncopyable {
 public:
     ThreadSpecific();
@@ -59,6 +58,7 @@ public:
     ~ThreadSpecific();
 
 private:
+
     T* get();
     void set(T*);
     void static destroy(void* ptr);
@@ -109,6 +109,7 @@ inline void ThreadSpecific<T>::set(T* ptr)
     m_value = ptr;
 }
 #else
+
 #if USE(PTHREADS)
 template<typename T>
 inline ThreadSpecific<T>::ThreadSpecific()
