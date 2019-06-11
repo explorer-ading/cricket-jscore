@@ -42,8 +42,6 @@ RegisterFile::~RegisterFile()
     VirtualFree(m_buffer, DWORD(m_commitEnd) - DWORD(m_buffer), MEM_DECOMMIT);
 #endif
     VirtualFree(m_buffer, 0, MEM_RELEASE);
-#elif OS(AMIGAOS4)
-    fastFree(m_buffer);
 #else
     fastFree(m_buffer);
 #endif

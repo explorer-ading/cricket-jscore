@@ -342,16 +342,6 @@
 #define WTF_OS_AIX 1
 #endif
 
-/* OS(AMIGAOS4) */
-/* Operating system level dependencies for AmigaOS 4.x that should */
-/* be used regardless of operating environment */
-#ifdef __AMIGAOS4__
-#define WTF_OS_AMIGAOS4 1
-#define WTF_USE_CURL 1
-#define WTF_USE_PTHREADS 1
-#define USE_SYSTEM_MALLOC 1
-#undef  WTF_OS_MACPORT
-#endif
 
 /* OS(DARWIN) - Any Darwin-based OS, including Mac OS X and iPhone OS */
 #ifdef __APPLE__
@@ -554,7 +544,7 @@
 
 #if !OS(WINDOWS) && !OS(SOLARIS) && !OS(QNX) \
     && !OS(SYMBIAN) && !OS(HAIKU) && !OS(RVCT) \
-    && !OS(ANDROID) && !PLATFORM(BREWMP) && !OS(AMIGAOS4)
+    && !OS(ANDROID) && !PLATFORM(BREWMP) 
 #define HAVE_TM_GMTOFF 1
 #define HAVE_TM_ZONE 1
 #define HAVE_TIMEGM 1
@@ -603,36 +593,6 @@
 #if !COMPILER(RVCT)
 #define HAVE_SYS_PARAM_H 1
 #endif
-
-#elif PLATFORM(BREWMP)
-
-#define HAVE_ERRNO_H 1
-
-#elif OS(QNX)
-
-#define HAVE_ERRNO_H 1
-#define HAVE_MMAP 1
-#define HAVE_SBRK 1
-#define HAVE_STRINGS_H 1
-#define HAVE_SYS_PARAM_H 1
-#define HAVE_SYS_TIME_H 1
-
-#elif OS(ANDROID)
-
-#define HAVE_ERRNO_H 1
-#define HAVE_LANGINFO_H 0
-#define HAVE_MMAP 1
-#define HAVE_SBRK 1
-#define HAVE_STRINGS_H 1
-#define HAVE_SYS_PARAM_H 1
-#define HAVE_SYS_TIME_H 1
-
-#elif OS(AMIGAOS4)                                                                                           
-                                                                                                                   
-#define HAVE_ERRNO_H 1                                                                                             
-#define HAVE_STRINGS_H 1                                                                                           
-#define HAVE_SYS_PARAM_H 1                                                                                         
-#define HAVE_SYS_TIME_H 1
 
 #else
 

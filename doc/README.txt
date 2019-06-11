@@ -39,4 +39,9 @@ Porting :
 	WTF_CHANGES , Memory Access related and visit api added. 
 	NDEBUG , No Debug defined 
 
+- WTF , source files are overlay included
+	Base/wtf
+	BAL/wtf
+	JavaScriptCore/wtf
+
 

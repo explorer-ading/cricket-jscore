@@ -87,9 +87,6 @@
 #include <errno.h>
 #endif
 
-#elif OS(AMIGAOS4)
-#include <malloc.h>
-#include <proto/exec.h>
 
 #endif
 
@@ -306,10 +303,6 @@ NEVER_INLINE CollectorBlock* Heap::allocateBlock()
 #elif HAVE(POSIX_MEMALIGN)
     void* address;
     posix_memalign(&address, BLOCK_SIZE, BLOCK_SIZE);
-#elif OS(AMIGAOS4)
-    void* address;
-    address = memalign(BLOCK_SIZE, BLOCK_SIZE);
-    memset(address, 0, BLOCK_SIZE);
 #else
 
 #if ENABLE(JSC_MULTIPLE_THREADS)
@@ -397,7 +390,7 @@ NEVER_INLINE void Heap::freeBlockPtr(CollectorBlock* block)
 #else
     _aligned_free(block);
 #endif
-#elif HAVE(POSIX_MEMALIGN) || OS(AMIGAOS4)
+#elif HAVE(POSIX_MEMALIGN) 
     free(block);
 #else
     munmap(reinterpret_cast<char*>(block), BLOCK_SIZE);
@@ -675,12 +668,7 @@ static inline void* currentThreadStackBase()
     RThread thread;
     thread.StackInfo(info);
     return (void*)info.iBase;
-#elif OS(AMIGAOS4)
-    return (void*)IExec->FindTask(NULL)->tc_SPUpper;
-#elif OS(HAIKU)
-    thread_info threadInfo;
-    get_thread_info(find_thread(NULL), &threadInfo);
-    return threadInfo.stack_end;
+
 #elif OS(UNIX)
     AtomicallyInitializedStatic(Mutex&, mutex = *new Mutex);
     MutexLocker locker(mutex);
