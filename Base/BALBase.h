@@ -29,26 +29,8 @@
 #ifndef BALBase_h
 #define BALBase_h
 
-#include "owb-config.h"
 #include "Platform.h"
 #include "WebKitTypes.h"
-
-#if OS(AMIGAOS4)
-#include "AmigaOS4/BALTypeAmigaOS4.h"
-#endif
-
-#if PLATFORM(SDL)
-#include "SDL/BALTypeSDL.h"
-#endif
-
-#if PLATFORM(SDLCAIRO)
-#include "SDLCairo/BALTypeSDLCairo.h"
-#endif
-
-
-#if PLATFORM()
-#include ""
-#endif
 
 class BALBase {
 };
