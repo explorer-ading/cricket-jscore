@@ -27,5 +27,9 @@ make
 
 ## Lua 
 * [lua](https://www.lua.org/start.html)
+* [lua-jit](http://luajit.org/)
+
+## Dart
+* [dart](https://dart.dev/)
 
 ## MIT License
